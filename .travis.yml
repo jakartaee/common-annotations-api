@@ -1,0 +1,26 @@
+language: java
+jdk: oraclejdk8
+sudo: required
+cache:
+  directories:
+  - "$HOME/.m2"
+  - "$HOME/apache-maven-3.5.4"
+  - ''
+before_install:
+- sudo add-apt-repository ppa:linuxuprising/java -y
+- sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0x219BD9C9
+- sudo apt-add-repository 'deb http://repos.azulsystems.com/ubuntu stable main'
+- sudo echo 'deb http://repos.azulsystems.com/debian stable main' > /etc/apt/sources.list.d/zulu.list
+- sudo apt-get update -q
+- sudo apt-get install oracle-java10-installer oracle-java9-installer oracle-java8-installer -y
+- export JAVA_HOME=/usr/lib/jvm/java-10-oracle
+- mkdir -p $HOME/.m2
+- export M2_HOME=$HOME/apache-maven-3.5.4
+- if [ ! -d $M2_HOME/bin ]; then curl https://archive.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz | tar zxf - -C $HOME; fi
+- export PATH=$M2_HOME/bin:$PATH
+install:
+- chmod go-rwx -R $HOME/.m2
+before_script:
+- mvn -v
+script:
+- mvn --toolchains ./.ci-toolchains.xml -U clean package

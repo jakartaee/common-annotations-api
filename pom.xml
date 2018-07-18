@@ -20,9 +20,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>net.java</groupId>
-        <artifactId>jvnet-parent</artifactId>
-        <version>3</version>
+      <groupId>org.eclipse.ee4j</groupId>
+      <artifactId>project</artifactId>
+      <version>1.0</version>
     </parent>
 
     <groupId>javax.annotation</groupId>
@@ -80,6 +80,37 @@
       <tag>HEAD</tag>
   </scm>
 
+	<dependencies>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.2.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-launcher</artifactId>
+			<version>1.2.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.2.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>java-hamcrest</artifactId>
+			<version>2.0.0.0</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	
+	
     <build>
         <resources>
             <resource>
@@ -97,15 +128,49 @@
             </resource>
         </resources>
         <plugins>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <compilerArgument>-Xlint:unchecked</compilerArgument>
-                </configuration>
-            </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.7.0</version>
+        <executions>
+          <execution>
+            <id>default-compile</id>
+            <configuration>
+              <jdkToolchain>
+                <version>9</version>
+              </jdkToolchain>
+              <release>9</release>
+            </configuration>
+          </execution>
+          <execution>
+            <id>default-testCompile</id>
+            <configuration>
+              <jdkToolchain>
+                <version>9</version>
+              </jdkToolchain>
+              <release>9</release>
+            </configuration>
+          </execution>
+          <execution>
+            <id>base-compile</id>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+            <configuration>
+              <excludes>
+                <exclude>module-info.java</exclude>
+              </excludes>
+            </configuration>
+          </execution>
+        </executions>
+        <configuration>
+          <jdkToolchain>
+            <version>1.8</version>
+          </jdkToolchain>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
             <plugin>
                 <groupId>org.glassfish.build</groupId>
                 <artifactId>spec-version-maven-plugin</artifactId>
@@ -133,7 +198,7 @@
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
-                <version>1.4.3</version>
+                <version>3.5.1</version>
                 <configuration>
                     <supportedProjectTypes>
                         <supportedProjectType>jar</supportedProjectType>
@@ -165,16 +230,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>2.4</version>
+                <version>3.0.2</version>
                 <configuration>
                     <archive>
                         <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
-                        <manifestEntries>
-                            <!-- for JDK 9 -->
-                            <Automatic-Module-Name>
-                                java.annotation
-                            </Automatic-Module-Name>
-                        </manifestEntries>
                     </archive>
                     <excludes>
                         <exclude>**/*.java</exclude>
@@ -184,7 +243,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-remote-resources-plugin</artifactId>
-                <version>1.2.1</version>
+                <version>1.5</version>
                 <executions>
                   <execution>
                     <goals>
@@ -201,7 +260,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.1</version>
+                <version>3.0.1</version>
                 <configuration>
                     <includePom>true</includePom>
                 </configuration>
@@ -217,7 +276,16 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.8</version>
+                <version>3.0.1</version>
+                <configuration>
+                	<failOnWarnings>false</failOnWarnings>
+                	<failOnError>false</failOnError>
+                    <additionalOptions>
+                    	<additionalOption>-html5</additionalOption>
+                    	<additionalOption>--add-modules</additionalOption>
+                    	<additionalOption>java.sql</additionalOption>
+                    </additionalOptions>
+                </configuration>
                 <executions>
 		    <execution>
                         <id>attach-javadocs</id>
@@ -226,6 +294,7 @@
                         </goals>
 		    </execution>
                     <execution>
+                    	<!-- no such phase, should site as this is a report goal -->
                         <phase>javadoc</phase>
                         <goals>
                             <goal>javadoc</goal>
@@ -263,7 +332,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>2.5.3</version>
                 <configuration>
                     <mavenExecutorId>forked-path</mavenExecutorId>
                     <useReleaseProfile>false</useReleaseProfile>
@@ -291,19 +359,98 @@
                     </reporting>
                 </configuration>
             </plugin>
-	    <plugin>
-                 <groupId>org.apache.maven.plugins</groupId>
-                 <artifactId>maven-gpg-plugin</artifactId>
-                     <executions>
-                         <execution>
-                             <id>sign-artifacts</id>
-		             <phase>verify</phase>
-                             <goals>
-                                 <goal>sign</goal>
-                             </goals>
-                         </execution>
-                     </executions>
-	</plugin>
+            
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.0</version>
+				<inherited>true</inherited>
+				<configuration>
+					<includes>
+						<include>**/*Test.java</include>
+					</includes>
+					<excludes>
+						<exclude>**/*IntegrationTest.java</exclude>
+					</excludes>
+				</configuration>
+			</plugin>					
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.22.0</version>
+				<inherited>true</inherited>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+						<configuration>
+							<testFailureIgnore>false</testFailureIgnore>
+							<includes>
+								<include>**/*IntegrationTest.java</include>
+							</includes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>3.0.0-M1</version>
+				<executions>
+					<execution>
+						<id>module-info-file-exists</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<phase>pre-integration-test</phase>
+						<configuration>
+							<rules>
+								<requireFilesExist>
+									<files>
+										<file>${project.build.outputDirectory}/module-info.class</file>
+									</files>
+								</requireFilesExist>
+							</rules>
+							<fail>true</fail>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
         </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.eclipse.m2e</groupId>
+                    <artifactId>lifecycle-mapping</artifactId>
+                    <version>1.0.0</version>
+                    <configuration>
+                        <lifecycleMappingMetadata>
+                            <pluginExecutions>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.glassfish.build</groupId>
+                                        <artifactId>spec-version-maven-plugin</artifactId>
+                                        <versionRange>[1.2,)</versionRange>
+                                        <goals>
+                                            <goal>set-spec-properties</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+	                                    <execute>
+	                                    	<runOnConfiguration>true</runOnConfiguration>
+	                                    </execute>
+                                    </action>
+                                </pluginExecution>
+                            </pluginExecutions>
+                        </lifecycleMappingMetadata>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 </project>
