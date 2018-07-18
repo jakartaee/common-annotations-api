@@ -80,37 +80,37 @@
       <tag>HEAD</tag>
   </scm>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-api</artifactId>
-			<version>5.2.0</version>
-			<scope>test</scope>
-		</dependency>
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.2.0</version>
+            <scope>test</scope>
+        </dependency>
 
-		<dependency>
-			<groupId>org.junit.platform</groupId>
-			<artifactId>junit-platform-launcher</artifactId>
-			<version>1.2.0</version>
-			<scope>test</scope>
-		</dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <version>1.2.0</version>
+            <scope>test</scope>
+        </dependency>
 
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-engine</artifactId>
-			<version>5.2.0</version>
-			<scope>test</scope>
-		</dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.2.0</version>
+            <scope>test</scope>
+        </dependency>
 
-		<dependency>
-			<groupId>org.hamcrest</groupId>
-			<artifactId>java-hamcrest</artifactId>
-			<version>2.0.0.0</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
-	
-	
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>java-hamcrest</artifactId>
+            <version>2.0.0.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    
+    
     <build>
         <resources>
             <resource>
@@ -278,23 +278,23 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.0.1</version>
                 <configuration>
-                	<failOnWarnings>false</failOnWarnings>
-                	<failOnError>false</failOnError>
+                    <failOnWarnings>false</failOnWarnings>
+                    <failOnError>false</failOnError>
                     <additionalOptions>
-                    	<additionalOption>-html5</additionalOption>
-                    	<additionalOption>--add-modules</additionalOption>
-                    	<additionalOption>java.sql</additionalOption>
+                        <additionalOption>-html5</additionalOption>
+                        <additionalOption>--add-modules</additionalOption>
+                        <additionalOption>java.sql</additionalOption>
                     </additionalOptions>
                 </configuration>
                 <executions>
-		    <execution>
+            <execution>
                         <id>attach-javadocs</id>
-	                <goals>
+                    <goals>
                             <goal>jar</goal>
                         </goals>
-		    </execution>
+            </execution>
                     <execution>
-                    	<!-- no such phase, should site as this is a report goal -->
+                        <!-- no such phase, should site as this is a report goal -->
                         <phase>javadoc</phase>
                         <goals>
                             <goal>javadoc</goal>
@@ -360,66 +360,66 @@
                 </configuration>
             </plugin>
             
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.22.0</version>
-				<inherited>true</inherited>
-				<configuration>
-					<includes>
-						<include>**/*Test.java</include>
-					</includes>
-					<excludes>
-						<exclude>**/*IntegrationTest.java</exclude>
-					</excludes>
-				</configuration>
-			</plugin>					
-			
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-failsafe-plugin</artifactId>
-				<version>2.22.0</version>
-				<inherited>true</inherited>
-				<executions>
-					<execution>
-						<goals>
-							<goal>integration-test</goal>
-							<goal>verify</goal>
-						</goals>
-						<configuration>
-							<testFailureIgnore>false</testFailureIgnore>
-							<includes>
-								<include>**/*IntegrationTest.java</include>
-							</includes>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-enforcer-plugin</artifactId>
-				<version>3.0.0-M1</version>
-				<executions>
-					<execution>
-						<id>module-info-file-exists</id>
-						<goals>
-							<goal>enforce</goal>
-						</goals>
-						<phase>pre-integration-test</phase>
-						<configuration>
-							<rules>
-								<requireFilesExist>
-									<files>
-										<file>${project.build.outputDirectory}/module-info.class</file>
-									</files>
-								</requireFilesExist>
-							</rules>
-							<fail>true</fail>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.0</version>
+                <inherited>true</inherited>
+                <configuration>
+                    <includes>
+                        <include>**/*Test.java</include>
+                    </includes>
+                    <excludes>
+                        <exclude>**/*IntegrationTest.java</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>                    
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.22.0</version>
+                <inherited>true</inherited>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration>
+                            <testFailureIgnore>false</testFailureIgnore>
+                            <includes>
+                                <include>**/*IntegrationTest.java</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.0.0-M1</version>
+                <executions>
+                    <execution>
+                        <id>module-info-file-exists</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <rules>
+                                <requireFilesExist>
+                                    <files>
+                                        <file>${project.build.outputDirectory}/module-info.class</file>
+                                    </files>
+                                </requireFilesExist>
+                            </rules>
+                            <fail>true</fail>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
 
         <pluginManagement>
@@ -441,9 +441,9 @@
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-	                                    <execute>
-	                                    	<runOnConfiguration>true</runOnConfiguration>
-	                                    </execute>
+                                        <execute>
+                                            <ignore />
+                                        </execute>
                                     </action>
                                 </pluginExecution>
                             </pluginExecutions>
