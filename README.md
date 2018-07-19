@@ -8,4 +8,4 @@ component JSRs, but it is also valuable to allow consistency between Java EE and
 
 This standalone release of Java(TM) Common Annotations uses a
 [Java Platform Module System](http://openjdk.java.net/projects/jigsaw/spec/)
- module name of `javax.annotation`.
+ module name of `java.annotation`.

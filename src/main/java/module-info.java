@@ -1,4 +1,4 @@
-module javax.annotation {
+module java.annotation {
 	
 	requires java.base;
 	
