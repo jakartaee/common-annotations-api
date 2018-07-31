@@ -20,9 +20,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>net.java</groupId>
-        <artifactId>jvnet-parent</artifactId>
-        <version>3</version>
+	<groupId>org.eclipse.ee4j</groupId>
+	<artifactId>project</artifactId>
+	<version>1.0.1</version>
     </parent>
 
     <groupId>javax.annotation</groupId>
@@ -43,23 +43,15 @@
     <name>${extension.name} API</name>
     <description>Common Annotations for the JavaTM Platform API</description>
 
-    <url>http://jcp.org/en/jsr/detail?id=250</url>
+    <url>https://projects.eclipse.org/projects/ee4j.ca</url>
 
     <developers>
          <developer>
-            <id>ldemichiel</id>
             <name>Linda De Michiel</name>
             <organization>Oracle Corp.</organization>
-            <roles>
-                <role>lead</role>
-            </roles>
         </developer>
     </developers>
 
-    <organization>
-        <name>GlassFish Community</name>
-        <url>https://javaee.github.io/glassfish</url>
-    </organization>
     <licenses>
       <license>
             <name>EPL 2.0</name>
@@ -79,6 +71,21 @@
         <url>https://github.com/eclipse-ee4j/common-annotations-api</url>
       <tag>HEAD</tag>
   </scm>
+
+    <issueManagement>
+        <system>github</system>
+        <url>https://github.com/eclipse-ee4j/common-annotations-api/issues</url>
+    </issueManagement>
+
+    <mailingLists>
+        <mailingList>
+          <name>Common Annotations mailing list</name>
+          <post>ca-dev@eclipse.org</post>
+          <subscribe>https://dev.eclipse.org/mailman/listinfo/ca-dev</subscribe>
+          <unsubscribe>https://dev.eclipse.org/mailman/listinfo/ca-dev</unsubscribe>
+          <archive>https://dev.eclipse.org/mhonarc/lists/ca-dev</archive>
+        </mailingList>
+    </mailingLists>
 
     <build>
         <resources>
