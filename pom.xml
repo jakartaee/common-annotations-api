@@ -25,8 +25,8 @@
         <version>3</version>
     </parent>
 
-    <groupId>javax.annotation</groupId>
-    <artifactId>javax.annotation-api</artifactId>
+    <groupId>jakarta.annotation</groupId>
+    <artifactId>jakarta.annotation-api</artifactId>
     <version>1.3.3-SNAPSHOT</version>
     
     <properties>
