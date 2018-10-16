@@ -19,10 +19,11 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
-        <groupId>net.java</groupId>
-        <artifactId>jvnet-parent</artifactId>
-        <version>3</version>
+        <groupId>org.eclipse.ee4j</groupId>
+        <artifactId>project</artifactId>
+        <version>1.0.2</version>
     </parent>
 
     <groupId>jakarta.annotation</groupId>
@@ -36,32 +37,25 @@
         <bundle.symbolicName>javax.annotation-api</bundle.symbolicName>
         <vendor.name>Oracle Corporation</vendor.name>
         <implementation.vendor.id>org.glassfish</implementation.vendor.id>
-        <findbugs.version>2.3.1</findbugs.version>
+        <findbugs.version>3.0.5</findbugs.version>
         <findbugs.exclude>exclude.xml</findbugs.exclude>
         <findbugs.threshold>Low</findbugs.threshold>
     </properties>
+
     <name>${extension.name} API</name>
     <description>Common Annotations for the JavaTM Platform API</description>
 
-    <url>http://jcp.org/en/jsr/detail?id=250</url>
+    <url>https://projects.eclipse.org/projects/ee4j.ca</url>
 
     <developers>
-         <developer>
-            <id>ldemichiel</id>
+        <developer>
             <name>Linda De Michiel</name>
             <organization>Oracle Corp.</organization>
-            <roles>
-                <role>lead</role>
-            </roles>
         </developer>
     </developers>
 
-    <organization>
-        <name>GlassFish Community</name>
-        <url>https://javaee.github.io/glassfish</url>
-    </organization>
     <licenses>
-      <license>
+        <license>
             <name>EPL 2.0</name>
             <url>http://www.eclipse.org/legal/epl-2.0</url>
             <distribution>repo</distribution>
@@ -77,10 +71,26 @@
         <connection>scm:git:https://github.com/eclipse-ee4j/common-annotations-api.git</connection>
         <developerConnection>scm:git:git@github.com:eclipse-ee4j/common-annotations-api.git</developerConnection>
         <url>https://github.com/eclipse-ee4j/common-annotations-api</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
+
+    <issueManagement>
+        <system>github</system>
+        <url>https://github.com/eclipse-ee4j/common-annotations-api/issues</url>
+    </issueManagement>
+
+    <mailingLists>
+        <mailingList>
+            <name>Common Annotations mailing list</name>
+            <post>ca-dev@eclipse.org</post>
+            <subscribe>https://dev.eclipse.org/mailman/listinfo/ca-dev</subscribe>
+            <unsubscribe>https://dev.eclipse.org/mailman/listinfo/ca-dev</unsubscribe>
+            <archive>https://dev.eclipse.org/mhonarc/lists/ca-dev</archive>
+        </mailingList>
+    </mailingLists>
 
     <build>
+
         <resources>
             <resource>
                 <directory>src/main/java</directory>
@@ -96,10 +106,74 @@
                 </excludes>
             </resource>
         </resources>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.glassfish.build</groupId>
+                    <artifactId>spec-version-maven-plugin</artifactId>
+                    <version>1.5</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <version>1.4.3</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>2.6</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-remote-resources-plugin</artifactId>
+                    <version>1.5</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>3.0.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>3.0.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>findbugs-maven-plugin</artifactId>
+                    <version>${findbugs.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.5.3</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.7.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>1.6</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>3.0.0-M2</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -109,8 +183,8 @@
             <plugin>
                 <groupId>org.glassfish.build</groupId>
                 <artifactId>spec-version-maven-plugin</artifactId>
-                <version>1.2</version>
                 <configuration>
+                    <specMode>jakarta</specMode>
                     <spec>
                         <nonFinal>${non.final}</nonFinal>
                         <jarType>api</jarType>
@@ -133,7 +207,6 @@
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
-                <version>1.4.3</version>
                 <configuration>
                     <supportedProjectTypes>
                         <supportedProjectType>jar</supportedProjectType>
@@ -165,7 +238,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>2.4</version>
                 <configuration>
                     <archive>
                         <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
@@ -184,7 +256,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-remote-resources-plugin</artifactId>
-                <version>1.2.1</version>
                 <executions>
                   <execution>
                     <goals>
@@ -201,7 +272,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.1</version>
                 <configuration>
                     <includePom>true</includePom>
                 </configuration>
@@ -217,7 +287,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.8</version>
                 <executions>
 		    <execution>
                         <id>attach-javadocs</id>
@@ -252,7 +321,6 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>findbugs-maven-plugin</artifactId>
-                <version>${findbugs.version}</version>
                 <configuration>
                     <threshold>${findbugs.threshold}</threshold>
                     <excludeFilterFile>${findbugs.exclude}</excludeFilterFile>
@@ -263,7 +331,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>2.5.3</version>
                 <configuration>
                     <mavenExecutorId>forked-path</mavenExecutorId>
                     <useReleaseProfile>false</useReleaseProfile>
@@ -274,7 +341,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
-                <version>3.1</version>
                 <configuration>
                     <reporting>
                         <plugins>
@@ -291,19 +357,8 @@
                     </reporting>
                 </configuration>
             </plugin>
-	    <plugin>
-                 <groupId>org.apache.maven.plugins</groupId>
-                 <artifactId>maven-gpg-plugin</artifactId>
-                     <executions>
-                         <execution>
-                             <id>sign-artifacts</id>
-		             <phase>verify</phase>
-                             <goals>
-                                 <goal>sign</goal>
-                             </goals>
-                         </execution>
-                     </executions>
-	</plugin>
         </plugins>
+
     </build>
+
 </project>
