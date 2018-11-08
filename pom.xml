@@ -34,7 +34,6 @@
         <non.final>false</non.final>
         <spec.version>1.3</spec.version>
         <extension.name>jakarta.annotation</extension.name>
-        <bundle.symbolicName>jakarta.annotation-api</bundle.symbolicName>
         <vendor.name>Oracle Corporation</vendor.name>
         <implementation.vendor.id>org.glassfish</implementation.vendor.id>
         <findbugs.version>3.0.5</findbugs.version>
@@ -236,8 +235,8 @@
                     </supportedProjectTypes>
                     <instructions>
                         <Bundle-Version>${spec.bundle.version}</Bundle-Version>
-                        <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
-                        <Extension-Name>${extension.name}</Extension-Name>
+                        <Bundle-SymbolicName>${spec.bundle.symbolic-name}</Bundle-SymbolicName>
+                        <Extension-Name>${spec.extension.name}</Extension-Name>
                         <Implementation-Version>${spec.implementation.version}</Implementation-Version>
                         <Specification-Version>${spec.specification.version}</Specification-Version>
                         <Bundle-Description>
