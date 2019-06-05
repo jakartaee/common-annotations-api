@@ -1,4 +1,4 @@
-# Java(TM) Common Annotations
+# Java(TM) Common Annotations [![Build Status](https://travis-ci.org/eclipse-ee4j/common-annotations-api.svg?branch=master)](https://travis-ci.org/eclipse-ee4j/common-annotations-api)
 
 The intention of Java(TM) Common Annotations is to develop annotations for common semantic 
 concepts in the Java SE and Java EE platforms that apply across a variety of individual 
