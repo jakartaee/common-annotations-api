@@ -1,13 +1,12 @@
-# Notices for Eclipse Project for Common Annotations
+# Notices for Jakarta Annotations
 
-This content is produced and maintained by the Eclipse Project for Common
-Annotations project.
+This content is produced and maintained by the Jakarta Annotations project.
 
  * Project home: https://projects.eclipse.org/projects/ee4j.ca
 
 ## Trademarks
 
-Eclipse Project for Common Annotations is a trademark of the Eclipse Foundation.
+Jakarta Annotations is a trademark of the Eclipse Foundation.
 
 ## Declared Project Licenses
 

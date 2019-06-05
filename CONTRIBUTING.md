@@ -1,4 +1,4 @@
-# Contributing to Eclipse Project for Common Annotations
+# Contributing to Jakarta Annotations
 
 Thanks for your interest in this project.
 
@@ -40,5 +40,5 @@ https://www.eclipse.org/projects/handbook/#resources-commit
 
 Contact the project developers via the project's "dev" list.
 
- * 
+ *
 
