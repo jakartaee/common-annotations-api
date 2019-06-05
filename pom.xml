@@ -42,7 +42,7 @@
     </properties>
 
     <name>${extension.name} API</name>
-    <description>Common Annotations for the JavaTM Platform API</description>
+    <description>Jakarta Annotations</description>
 
     <url>https://projects.eclipse.org/projects/ee4j.ca</url>
 
@@ -80,7 +80,7 @@
 
     <mailingLists>
         <mailingList>
-            <name>Common Annotations mailing list</name>
+            <name>Jakarta Annotations mailing list</name>
             <post>ca-dev@eclipse.org</post>
             <subscribe>https://dev.eclipse.org/mailman/listinfo/ca-dev</subscribe>
             <unsubscribe>https://dev.eclipse.org/mailman/listinfo/ca-dev</unsubscribe>
@@ -234,7 +234,7 @@
                         <Implementation-Version>${spec.implementation.version}</Implementation-Version>
                         <Specification-Version>${spec.specification.version}</Specification-Version>
                         <Bundle-Description>
-                            Java(TM) Common Annotations ${spec.version} API Design Specification
+                            Jakarta Annotations, Version ${spec.version}
                         </Bundle-Description>
                         <Specification-Vendor>${vendor.name}</Specification-Vendor>
                         <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
@@ -299,7 +299,7 @@
                         <configuration>
                             <groups>
                                 <group>
-                                    <title>Common Annotations API Documentation</title>
+                                    <title>Jakarta Annotations API Documentation</title>
                                     <packages>javax.annotation</packages>
                                 </group>
                             </groups>
