@@ -4,8 +4,9 @@ Thanks for your interest in this project.
 
 ## Project description
 
-Annotations for common semantic concepts in the J2SE and J2EE platforms that
-apply across a variety of individual technologies.
+**Jakarta Annotations** defines a collection of annotations representing common
+semantic concepts that enable a declarative style of programming that applies
+across a variety of Java technologies.
 
  * https://projects.eclipse.org/projects/ee4j.ca
 
@@ -40,5 +41,4 @@ https://www.eclipse.org/projects/handbook/#resources-commit
 
 Contact the project developers via the project's "dev" list.
 
- *
-
+ * https://accounts.eclipse.org/mailing-list/ca-dev
