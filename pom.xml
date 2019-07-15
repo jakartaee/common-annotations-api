@@ -30,8 +30,10 @@
     <artifactId>ca-parent</artifactId>
     <packaging>pom</packaging>
     <version>1.3.3-SNAPSHOT</version>
-    <name>${extension.name} API</name>
-    <description>Common Annotations for the JavaTM Platform API</description>
+
+    <name>Jakarta Annotations Parent POM</name>
+    <description>Jakarta Annotations Parent POM</description>
+
     <url>https://projects.eclipse.org/projects/ee4j.ca</url>
 
     <scm>
