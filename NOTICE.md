@@ -8,9 +8,6 @@ This content is produced and maintained by the Jakarta Annotations project.
 
 Jakarta Annotations is a trademark of the Eclipse Foundation.
 
-Oracle and Java are registered trademarks of Oracle and/or its affiliates. Other
-names may be trademarks of their respective owners.
-
 ## Declared Project Licenses
 
 This program and the accompanying materials are made available under the terms
