@@ -41,8 +41,8 @@
         <findbugs.threshold>Low</findbugs.threshold>
     </properties>
 
-    <name>${extension.name} API</name>
-    <description>Common Annotations for the JavaTM Platform API</description>
+    <name>Jakarta Annotations API</name>
+    <description>Jakarta Annotations API</description>
 
     <url>https://projects.eclipse.org/projects/ee4j.ca</url>
 
@@ -80,7 +80,7 @@
 
     <mailingLists>
         <mailingList>
-            <name>Common Annotations mailing list</name>
+            <name>Jakarta Annotations mailing list</name>
             <post>ca-dev@eclipse.org</post>
             <subscribe>https://dev.eclipse.org/mailman/listinfo/ca-dev</subscribe>
             <unsubscribe>https://dev.eclipse.org/mailman/listinfo/ca-dev</unsubscribe>
@@ -108,7 +108,7 @@
                 <plugin>
                     <groupId>org.apache.felix</groupId>
                     <artifactId>maven-bundle-plugin</artifactId>
-                    <version>1.4.3</version>
+                    <version>4.2.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -128,7 +128,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>3.0.1</version>
+                    <version>3.1.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
@@ -172,7 +172,7 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <directory>${basedir}</directory>
+                                    <directory>${basedir}/..</directory>
                                     <targetPath>META-INF</targetPath>
                                     <includes>
                                         <include>LICENSE.md</include>
@@ -233,9 +233,7 @@
                         <Extension-Name>${spec.extension.name}</Extension-Name>
                         <Implementation-Version>${spec.implementation.version}</Implementation-Version>
                         <Specification-Version>${spec.specification.version}</Specification-Version>
-                        <Bundle-Description>
-                            Java(TM) Common Annotations ${spec.version} API Design Specification
-                        </Bundle-Description>
+                        <Bundle-Description>${project.name}</Bundle-Description>
                         <Specification-Vendor>${vendor.name}</Specification-Vendor>
                         <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
                         <Implementation-Vendor-Id>${implementation.vendor.id}</Implementation-Vendor-Id>
@@ -290,6 +288,9 @@
                         <goals>
                             <goal>jar</goal>
                         </goals>
+                        <configuration>
+                            <detectJavaApiLink>false</detectJavaApiLink>
+                        </configuration>
                     </execution>
                     <execution>
                         <phase>javadoc</phase>
@@ -297,9 +298,10 @@
                             <goal>javadoc</goal>
                         </goals>
                         <configuration>
+                            <detectJavaApiLink>false</detectJavaApiLink>
                             <groups>
                                 <group>
-                                    <title>Common Annotations API Documentation</title>
+                                    <title>${project.name} Documentation</title>
                                     <packages>javax.annotation</packages>
                                 </group>
                             </groups>

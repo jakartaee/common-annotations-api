@@ -25,7 +25,11 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>annotations-spec</artifactId>
     <packaging>pom</packaging>
+
     <name>Jakarta Annotations Specification</name>
+    <description>Jakarta Annotations Specification</description>
+
+    <url>https://projects.eclipse.org/projects/ee4j.ca</url>
 
     <properties>
         <site.output.dir>${project.build.directory}/staging</site.output.dir>
@@ -56,8 +60,8 @@
                         <configuration>
                             <rules>
                                 <requireJavaVersion>
-                                    <version>[1.8.0,1.9.0)</version>
-                                    <message>You need JDK8 or lower</message>
+                                    <version>[1.8.0,)</version>
+                                    <message>You need JDK8 or higher</message>
                                 </requireJavaVersion>
                             </rules>
                         </configuration>
