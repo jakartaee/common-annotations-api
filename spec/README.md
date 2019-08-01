@@ -15,6 +15,10 @@ Run the full build:
 
 `mvn install`
 
+Generate specification with given status (ex. "Final Release"):
+
+`mvn clean install -Dstatus="Final Release"`
+
 Locate the html files:
 - `target/generated-docs/annotations-spec-<version>.html`
 
