@@ -22,7 +22,7 @@ import static java.lang.annotation.RetentionPolicy.*;
 
 /**
  * The <code>ManagedBean</code> annotation marks a POJO (Plain Old Java Object)
- * as a ManagedBean.  A ManagedBean supports a small set of basic services 
+ * as a ManagedBean.  A ManagedBean supports a small set of basic services
  * such as resource injection, lifecycle callbacks and interceptors.
  *
  * @since Common Annotations 1.1
@@ -32,7 +32,7 @@ import static java.lang.annotation.RetentionPolicy.*;
 public @interface ManagedBean {
     /**
      * The name of the Managed Bean. Managed Bean names must be unique within a
-     * Java EE module. For each named Managed Bean, Java EE containers must make
+     * Jakarta EE module. For each named Managed Bean, Java EE containers must make
      * available the following entries in JNDI, using the same naming scheme used
      * for EJB components.
      * <p>

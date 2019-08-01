@@ -32,7 +32,7 @@ import java.lang.annotation.RetentionPolicy;
  *
  * The data source will be registered under the name specified in the
  * <code>name</code> element. It may be defined to be in any valid
- * Java EE namespace, which will determine the accessibility of
+ * Jakarta EE namespace, which will determine the accessibility of
  * the data source from other components.
  * <p>
  * A JDBC driver implementation class of the appropriate type, either
@@ -58,13 +58,13 @@ import java.lang.annotation.RetentionPolicy;
  * </pre>
  * <p>
  * In the above example, the <code>databaseName</code>, <code>user</code>
- * and <code>serverName</code> properties were specified as part of the 
+ * and <code>serverName</code> properties were specified as part of the
  * <code>url</code> property and using the corresponding
  * annotation elements. This should be avoided.
  * <p>
- * If the <code>properties</code> annotation element is used and contains a 
- * DataSource property that was also specified using the corresponding 
- * annotation element, the annotation element value takes precedence.  
+ * If the <code>properties</code> annotation element is used and contains a
+ * DataSource property that was also specified using the corresponding
+ * annotation element, the annotation element value takes precedence.
  * For example:
  * <p>
  * <pre>
@@ -112,7 +112,7 @@ import java.lang.annotation.RetentionPolicy;
  *      user="lance",
  *      password="secret"
  *   )
- * 
+ *
  * </pre>
  * <p>
  * Using a <code>URL</code>:
@@ -167,9 +167,9 @@ public @interface DataSourceDefinition {
     String description() default "";
 
     /**
-     * A JDBC URL.  If the <code>url</code>  annotation element contains a 
-     * DataSource property that was also specified using the corresponding 
-     * annotation element, the precedence order is undefined and 
+     * A JDBC URL.  If the <code>url</code>  annotation element contains a
+     * DataSource property that was also specified using the corresponding
+     * annotation element, the precedence order is undefined and
      * implementation specific.
      * @since 1.1
      */
@@ -206,7 +206,7 @@ public @interface DataSourceDefinition {
     String serverName() default "localhost";
 
     /**
-     * Isolation level for connections. The Isolation level 
+     * Isolation level for connections. The Isolation level
      * must be one of the following:
      * <p>
      * <ul>
