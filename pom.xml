@@ -29,7 +29,9 @@
     <groupId>org.eclipse.ee4j.ca</groupId>
     <artifactId>ca-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.3.3-SNAPSHOT</version>
+    <version>1.3.5-SNAPSHOT</version>
+
+    <inceptionYear>2004</inceptionYear>
 
     <name>Jakarta Annotations Parent POM</name>
     <description>Jakarta Annotations Parent POM</description>

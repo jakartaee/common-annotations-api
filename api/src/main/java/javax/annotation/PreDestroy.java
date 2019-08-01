@@ -21,14 +21,14 @@ import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;
 
 /**
- * The <code>PreDestroy</code> annotation is used on a method as a 
- * callback notification to signal that the instance is in the 
- * process of being removed by the container. The method annotated 
- * with <code>PreDestroy</code> is typically used to 
- * release resources that it has been holding. This annotation must be 
+ * The <code>PreDestroy</code> annotation is used on a method as a
+ * callback notification to signal that the instance is in the
+ * process of being removed by the container. The method annotated
+ * with <code>PreDestroy</code> is typically used to
+ * release resources that it has been holding. This annotation must be
  * supported by all container-managed objects that support the use of
- * the <code>PostConstruct</code> annotation except the Java EE application 
- * client. The method on which the <code>PreDestroy</code> annotation 
+ * the <code>PostConstruct</code> annotation except the Jakarta EE application 
+ * client. The method on which the <code>PreDestroy</code> annotation
  * is applied must fulfill all of the following criteria:
  * <ul>
  * <li>The method must not have any parameters except in the case of
@@ -53,7 +53,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  * <p>
  * void &#060;METHOD&#062;()
  * </li>
- * <li>The method on which PreDestroy is applied may be public, protected, 
+ * <li>The method on which PreDestroy is applied may be public, protected,
  * package private or private.</li>
  * <li>The method must not be static.</li>
  * <li>The method should not be final.</li>

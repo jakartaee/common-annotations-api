@@ -21,14 +21,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.eclipse.ee4j</groupId>
-        <artifactId>project</artifactId>
-        <version>1.0.4</version>
+        <groupId>org.eclipse.ee4j.ca</groupId>
+        <artifactId>ca-parent</artifactId>
+        <version>1.3.5-SNAPSHOT</version>
     </parent>
 
     <groupId>jakarta.annotation</groupId>
     <artifactId>jakarta.annotation-api</artifactId>
-    <version>1.3.3-SNAPSHOT</version>
 
     <properties>
         <non.final>false</non.final>
@@ -282,38 +281,32 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <doctitle>Jakarta Annotations ${project.version} API Specification</doctitle>
+                    <sourceFileExcludes>
+                        <sourceFileExclude>**/module-info.java</sourceFileExclude>
+                        <sourceFileExclude>target/**/*.java</sourceFileExclude>
+                    </sourceFileExcludes>
+                    <docfilessubdirs>true</docfilessubdirs>
+                    <links>
+                        <link>http://docs.oracle.com/javase/8/docs/api/</link>
+                    </links>
+                    <detectJavaApiLink>false</detectJavaApiLink>
+                    <detectOfflineLinks>false</detectOfflineLinks>
+                    <header><![CDATA[<br>Jakarta Annotations API v${project.version}]]>
+                    </header>
+                    <bottom><![CDATA[
+                    Copyright &#169; {inceptionYear}&#x2013;{currentYear} Oracle and/or its affiliates. All rights reserved.<br>
+                    Use is subject to <a href="{@docRoot}/doc-files/EFSL.html" target="_top">license terms</a>.]]>
+                    </bottom>
+                </configuration>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
                         <goals>
                             <goal>jar</goal>
                         </goals>
-                        <configuration>
-                            <detectJavaApiLink>false</detectJavaApiLink>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <phase>javadoc</phase>
-                        <goals>
-                            <goal>javadoc</goal>
-                        </goals>
-                        <configuration>
-                            <detectJavaApiLink>false</detectJavaApiLink>
-                            <groups>
-                                <group>
-                                    <title>${project.name} Documentation</title>
-                                    <packages>javax.annotation</packages>
-                                </group>
-                            </groups>
-                            <bottom>
-<![CDATA[Copyright &#169; 1999-2018,
-    <a href="http://www.oracle.com">Oracle</a>
-    and/or its affiliates. All Rights Reserved.
-    Use is subject to
-    <a href="{@docRoot}/doc-files/speclicense.html" target="_top">license terms</a>.
-]]>
-                            </bottom>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -357,7 +350,5 @@
                 </configuration>
             </plugin>
         </plugins>
-
     </build>
-
 </project>
