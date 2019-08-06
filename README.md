@@ -1,10 +1,13 @@
-# Jakarta Annotations [![Build Status](https://travis-ci.org/eclipse-ee4j/common-annotations-api.svg?branch=master)](https://travis-ci.org/eclipse-ee4j/common-annotations-api)
+<br/>
+# <a name="Latest_News"></a>Latest News
 
-**Jakarta Annotations** defines a collection of annotations representing common
-semantic concepts that enable a declarative style of programming that applies
-across a variety of Java technologies.
+## December 11, 2018 - JSON-B API 1.0.1 Final Release ##
 
-This standalone release of Jakarta Annotations uses a
-[Java Platform Module System](http://openjdk.java.net/projects/jigsaw/spec/)
-"automatic" module name of `java.annotation`, to match the module name
-used in JDK 9.  A future version will include full module metadata.
+The [1.3.4 release](https://github.com/eclipse-ee4j/common-annotations-api/releases/tag/1.3.4)
+is the first project release under [Eclipse EE4J](https://projects.eclipse.org/projects/ee4j.ca) project umbrella. It does include changes to the Maven coordinates.
+
+The main jar file is now located at jakarta.annotation:jakarta.annotation-api.
+
+# <a name="Links"></a>Links
+
+- [Eclipse Project](https://projects.eclipse.org/projects/ee4j.ca)
