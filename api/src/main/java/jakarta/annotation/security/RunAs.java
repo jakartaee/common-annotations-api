@@ -14,24 +14,25 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-package javax.annotation;
+package jakarta.annotation.security;
 import java.lang.annotation.*;
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;
 
 /**
- * This class is used to allow multiple resources declarations.
+ * Defines the identity of the application during execution.
+ * This allows developers to execute an application under a particular role. 
+ * The role must map to the user / group information in the container's 
+ * security realm. Its value is the name of a security role.
  *
- * @see javax.annotation.Resource
- * @since 1.6, Common Annotations 1.0
+ * @since Common Annotations 1.0
  */
-
 @Documented
-@Retention(RUNTIME)
+@Retention (RUNTIME)
 @Target(TYPE)
-public @interface Resources {
-   /**
-    * Array used for multiple resource declarations.
-    */
-   Resource[] value();
+public @interface RunAs {
+    /**
+     * Name of a security role.
+     */
+    String value();
 }

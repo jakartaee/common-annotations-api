@@ -14,7 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-package javax.annotation;
+package jakarta.annotation;
 
 import java.lang.annotation.*;
 import static java.lang.annotation.ElementType.*;
@@ -61,8 +61,8 @@ import static java.lang.annotation.RetentionPolicy.*;
  * the container.</li>
  * </ul>
  *
- * @see javax.annotation.PostConstruct
- * @see javax.annotation.Resource
+ * @see jakarta.annotation.PostConstruct
+ * @see jakarta.annotation.Resource
  * @since 1.6, Common Annotations 1.0
  */
 
