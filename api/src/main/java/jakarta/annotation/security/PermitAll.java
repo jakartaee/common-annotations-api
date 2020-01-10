@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2005, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -14,7 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-package javax.annotation.security;
+package jakarta.annotation.security;
 import java.lang.annotation.*;
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;
@@ -30,8 +30,8 @@ import static java.lang.annotation.RetentionPolicy.*;
  * annotation overrides the <code>RolesAllowed</code> annotation for
  *  the specified method.
  *
- * @see javax.annotation.security.RolesAllowed
- * @see javax.annotation.security.DenyAll
+ * @see jakarta.annotation.security.RolesAllowed
+ * @see jakarta.annotation.security.DenyAll
  *
  * @since Common Annotations 1.0
  */

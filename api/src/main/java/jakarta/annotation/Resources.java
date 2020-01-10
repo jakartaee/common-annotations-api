@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2005, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -14,7 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-package javax.annotation;
+package jakarta.annotation;
 import java.lang.annotation.*;
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;
@@ -22,7 +22,7 @@ import static java.lang.annotation.RetentionPolicy.*;
 /**
  * This class is used to allow multiple resources declarations.
  *
- * @see javax.annotation.Resource
+ * @see jakarta.annotation.Resource
  * @since 1.6, Common Annotations 1.0
  */
 

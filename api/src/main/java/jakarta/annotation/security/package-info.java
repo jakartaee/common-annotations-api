@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -14,21 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-package javax.annotation.security;
-import java.lang.annotation.*;
-import static java.lang.annotation.ElementType.*;
-import static java.lang.annotation.RetentionPolicy.*;
-
 /**
- * Specifies that no security roles are allowed to invoke the specified 
- * method(s).
- *
- * @see javax.annotation.security.RolesAllowed
- * @see javax.annotation.security.PermitAll
- * @since Common Annotations 1.0
+ * This package contains the security common annotations.
  */
-@Documented
-@Retention (RUNTIME)
-@Target({TYPE, METHOD})
-public @interface DenyAll {
-}
+package jakarta.annotation.security;
