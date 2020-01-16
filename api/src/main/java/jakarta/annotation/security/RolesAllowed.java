@@ -14,29 +14,29 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-package javax.annotation.security;
+package jakarta.annotation.security;
 import java.lang.annotation.*;
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;
 
 /**
- * Specifies that all security roles are allowed to invoke the specified 
- * method(s) &#8212; i.e., that the specified method(s) are "unchecked". 
- * It can be specified on a class or on methods. Specifying it on the class 
- * means that it applies to all methods of the class. If specified at the 
- * method level, it only affects that method. If the <code>RolesAllowed</code>
- * annotation is specified at the class level and this annotation is 
- * applied at the method level, the <code>PermitAll</code> 
- * annotation overrides the <code>RolesAllowed</code> annotation for
- *  the specified method.
- *
- * @see javax.annotation.security.RolesAllowed
- * @see javax.annotation.security.DenyAll
+ * Specifies the list of security roles permitted to access method(s) in an 
+ * application.  The value of the <code>RolesAllowed</code> annotation 
+ * is a list of security role names. 
+ * This annotation can be specified on a class or on method(s). Specifying it 
+ * at a class level means that it applies to all the methods in the class. 
+ * Specifying it on a method means that it is applicable to that method only. 
+ * If applied at both the class and methods level, the method value overrides 
+ * the class value if the two conflict.
  *
  * @since Common Annotations 1.0
  */
 @Documented
 @Retention (RUNTIME)
 @Target({TYPE, METHOD})
-public @interface PermitAll {
+public @interface RolesAllowed {
+    /**
+     * List of roles that are permitted access.
+     */
+    String[] value();
 }
