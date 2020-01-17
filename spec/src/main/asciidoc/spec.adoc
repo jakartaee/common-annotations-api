@@ -1,0 +1,1921 @@
+== Jakarta Annotations Specification, Version 1.3
+
+Copyright (c) 2016, 2019 Oracle and/or its affiliates. All rights reserved.
+
+Oracle and Java are registered trademarks of Oracle and/or its
+affiliates. Other names may be trademarks of their respective owners.
+
+===
+
+image:annotations-3.png[image]
+
+Introduction
+
+image:annotations-4.png[image]
+
+With the addition of JSR 175 (A Metadata
+Facility for the JavaTM Programming Language) in the Java platform we
+envision that various technologies will use annotations to enable a
+declarative style of programming. It would be unfortunate if these
+technologies each independently defined their own annotations for common
+concepts. It would be valuable to have consistency within the Java EE
+and Java SE component technologies, but it will also be valuable to
+allow consistency between Java EE and Java SE.
+
+It is the intention of this specification to
+define a small set of common annotations that will be available for use
+within other specifications. It is hoped that this will help to avoid
+unnecessary redundancy or duplication between annotations defined in
+different Java Specification Requests (JSR). This would allow us to have
+the common annotations all in one place and let the technologies refer
+to this specification rather than have them specified in multiple
+specifications. This way all technologies can use the same version of
+the annotations and there will be consistency in the annotations used
+across the platforms.
+
+===
+
+image:annotations-5.png[image]
+
+Goals
+
+Define annotations for use in Java EE: This
+JSR will define annotations for use within component technologies in
+Java EE as well as the platform as a whole.
+
+Define annotations for use in future revisions
+of Java SE: This JSR will define annotations for use in JSRs targeted
+for Java SE as well as future revisions of Java SE.
+
+
+
+===
+
+image:annotations-5.png[image]
+
+Non-Goals
+
+Support for Java versions prior to J2SE 5.0
+
+Annotations were introduced in J2SE 5.0. It
+is not possible to do annotation processing in versions prior to J2SE
+5.0. It is not a goal of this specification to define a way of doing
+annotation processing of any kind for versions prior to J2SE 5.0.
+
+===
+
+image:annotations-5.png[image]
+
+Compatibility
+
+The annotations defined in this specification
+may be included individually as needed in products that make use of
+them. Other Java specifications will require support for subsets of
+these annotations. Products that support these Java specifications must
+include the required annotations.
+
+===
+
+image:annotations-5.png[image]
+
+Conventions
+
+The keywords ‘MUST’, ‘MUST NOT’, ‘REQUIRED’,
+‘SHALL’, ‘SHALL NOT’, ‘SHOULD’, ‘SHOULD NOT’, ‘RECOMMENDED’, ‘MAY’ AND
+‘OPTIONAL’ in this document are to be interpreted as described in RFC
+2119.
+
+
+
+Java code is formatted as shown below in
+figure 1.1:
+
+Figure 1.1 Example Java code
+
+package com.wombat.hello;
+
+public class Hello \{
+
+ public static void main(String[] args) \{
+
+ System.out.println("Hello world");
+
+ }
+
+}
+
+===
+
+image:annotations-5.png[image]
+
+Expert Group Members
+
+The following expert group members
+participated in JSR 250:
+
+Cedric Beust (individual)
+
+Bill Burke (JBoss)
+
+Wayne Carr (Intel)
+
+Robert Clevenger (Oracle)
+
+Evan Ireland (Sybase)
+
+Woo Jin Kim (Tmax Soft)
+
+Gavin King (JBoss)
+
+Rajiv Mordani (Oracle Corporation,
+Specification lead)
+
+Ted Neward (individual)
+
+Anurag Parashar (Pramati technologies)
+
+Michael Santos (individual)
+
+Hani Suleiman (Ironflare AB)
+
+Seth White (BEA)
+
+===
+
+image:annotations-5.png[image]
+
+Acknowledgements
+
+In addition to the expert group listed above,
+Linda DeMichiel, Ron Monzillo, Lance Andersen and Bill Shannon all of
+whom work at Oracle Corporation have provided input to this
+specification.
+
+
+
+===
+
+===
+
+image:annotations-6.png[image]
+
+Annotations
+
+image:annotations-7.png[image]
+
+This chapter describes the standard
+annotations, some guidelines for annotation inheritance and the usage of
+these annotations where possible.
+
+===
+
+image:annotations-8.png[image]
+
+General Guidelines for Inheritance of Annotations
+
+The interplay of annotations and inheritance
+in the Java language is potentially a source of complexity for
+developers. Developers will rely on some implicit assumptions when
+figuring out how annotations compose with other language features. At
+the same time, annotation semantics are defined by individual
+specifications, hence the potential for inconsistencies to arise. For
+instance, consider the following example:
+
+
+
+public class Base \{
+
+ @TransactionAttribute(REQUIRES_NEW)
+
+ public void foo \{...}
+
+}
+
+@Stateless
+
+public class Derived extends Base \{
+
+ @TransactionAttribute(NEVER)
+
+ public void foo \{...}
+
+}
+
+
+
+In keeping with the concept of method
+overriding, most developers will assume that in the _Derived_ class, the
+effective _TransactionAttribute_ annotation for method _foo_ is
+_TransactionAttribute(NEVER)_ . On the other hand, it might have been
+possible for the specification governing the semantics of the
+_TransactionAttribute_ annotations type to require that the effective
+_TransactionAttribute_ to be the most restrictive one in the whole
+inheritance tree, that is, in the example above
+_TransactionAttribute(REQUIRES_NEW)_ . A motivation for these semantics
+might have been that the _foo_ method in the _Derived_ class may call
+_super.foo()_ , resulting in the execution of some code that needs a
+transaction to be in place. Such a choice on the part of the
+specification for _TransactionAttribute_ would have contradicted a
+developer’s intuition on how method overriding works.
+
+In order to keep the resulting complexity in
+control, below are some guidelines recommended for how annotations
+defined in the different specifications should interact with
+inheritance:
+
+ Class-level annotations only affect the
+class they annotate and its members, that is, its methods and fields.
+They never affect a member declared by a superclass, even if it is not
+hidden or overridden by the class in question.
+
+In addition to affecting the annotated class,
+class-level annotations may act as a shorthand for member-level
+annotations. If a member carries a specific member-level annotation, any
+annotations of the same type implied by a class-level annotation are
+ignored. In other words, explicit member-level annotations have priority
+over member-level annotations implied by a class-level annotation. For
+example, a _TransactionAttribute(REQUIRED)_ annotation on a class
+implies that all the public methods in the class that it is applied on
+are annotated with _TransactionAttribute(REQUIRED)_ . However if there
+is a _TransactionAttribute(NEVER)_ annotation on a particular method,
+then the _TransactionAttribute(NEVER)_ applies for that particular
+method and not _TransactionAttribute(REQUIRED)_ .
+
+The interfaces implemented by a class never
+contribute annotations to the class itself or any of its members.
+
+Members inherited from a superclass and which
+are not hidden or overridden maintain the annotations they had in the
+class that declared them, including member-level annotations implied by
+class-level ones.
+
+Member-level annotations on a hidden or
+overridden member are always ignored.
+
+This set of guidelines guarantees that the
+effects of an annotation are local to the class on, or inside, which it
+appears. In order to find the effective annotation for a class member, a
+developer has to track down its last non-hidden and non-overridden
+declaration and examine it. If the sought-for annotation is not found
+there, then (s)he will have to examine the enclosing class declaration.
+If even this step fails to provide an annotation, no other source file
+will be consulted.
+
+Below are some examples that explain how the
+guidelines defined above will be applied to the _TransactionAttribute_
+annotation.
+
+
+
+@TransactionAttribute(REQUIRED)
+
+class Base \{
+
+ @TransactionAttribute(NEVER)
+
+ public void foo() \{...}
+
+ public void bar() \{...}
+
+}
+
+
+
+@Stateless
+
+class ABean extends Base \{
+
+ public void foo() \{...}
+
+}
+
+
+
+@Stateless
+
+public class BBean extends Base \{
+
+ @TransactionAttribute(REQUIRES_NEW)
+
+ public void foo() \{...}
+
+}
+
+
+
+@Stateless
+
+@TransactionAttribute(REQUIRES_NEW)
+
+public class CBean extends Base \{
+
+ public void foo() \{...}
+
+ public void bar() \{...}
+
+}
+
+
+
+@Stateless
+
+@TransactionAttribute(REQUIRES_NEW)
+
+public class DBean extends Base \{
+
+ public void bar() \{...}
+
+}
+
+
+
+@Stateless
+
+@TransactionAttribute(REQUIRES_NEW)
+
+public class EBean extends Base \{
+
+}
+
+
+
+The table below shows the effective
+_TransactionAttribute_ annotation in each of the cases above by applying
+the guidelines specified for annotations and inheritance:
+
+
+
+
+
+===
+
+Methods in derived classes
+
+Effective TransactionAttribute value
+
+ _foo() in ABean_
+
+ _TransactionAttribute(REQUIRED). (Default
+TransactionAttribute as defined by the EJB specification)._
+
+ _bar() in ABean_
+
+ _TransactionAttribute(REQUIRED)_
+
+ _foo() in BBean_
+
+ _TransactionAttribute(REQUIRES_NEW)_
+
+ _bar() in BBean_
+
+ _TransactionAttribute(REQUIRED)_
+
+ _foo() in CBean_
+
+ _TransactionAttribute(REQUIRES_NEW)_
+
+ _bar() in CBean_
+
+ _TransactionAttribute(REQUIRES_NEW)_
+
+ _foo() in DBean_
+
+ _TransactionAttribute(NEVER) (from the Base
+class)_
+
+ _bar() in DBean_
+
+ _TransactionAttribute(REQUIRES_NEW)_
+
+ _foo() in EBean_
+
+ _TransactionAttribute(NEVER) (From Base
+class)_
+
+ __
+
+ _bar() in EBean_
+
+ _TransactionAttribute(REQUIRED)(from Base
+class)_
+
+For more details about the
+_TransactionAttribute_ annotation, see the _EJB 3 Core Contracts_
+specification.
+
+All annotations defined in this specification
+follow the guidelines defined above unless explicitly stated otherwise.
+
+===
+
+image:annotations-8.png[image]
+
+javax.annotation.Generated
+
+The _Generated_ annotation is used to mark
+source code that has been generated. It can be specified on a class,
+method, or field. It can also be used to differentiate user-written code
+from generated code in a single file.
+
+The _value_ element MUST have the name of the
+code generator. The recommended convention is to use the fully qualified
+name of the code generator. For example: _com.company.package.classname_
+.
+
+The _date_ element is used to indicate the
+date the source was generated. The _date_ element MUST follow the ISO
+8601 standard. For example the _date_ element could have the following
+value:
+
+ _2001-07-04T12:08:56.235-0700_
+
+which represents 2001-07-04 12:08:56 local
+time in the U.S. Pacific time zone.
+
+The _comments_ element is a place holder for
+any comments that the code generator may want to include in the
+generated code.
+
+
+
+package javax.annotation;
+
+import static
+java.lang.annotation.ElementType.*;
+
+import static
+java.lang.annotation.RetentionPolicy.*;
+
+@Target(\{ANNOTATION_TYPE, CONSTRUCTOR,
+FIELD, LOCAL_VARIABLE, METHOD, PACKAGE, PARAMETER, TYPE})
+
+@Retention(SOURCE)
+
+public @interface Generated \{
+
+ String[] value();
+
+ String date() default "";
+
+ String comments() default "";
+
+}
+
+
+
+===
+
+Element
+
+Description
+
+Default
+
+ _value_
+
+Name of the code generator
+
+
+
+ _date_
+
+Date source was generated. MUST follow ISO
+8601 standard
+
+""
+
+ _comments_
+
+placeholder for comments that the generator
+may want to include in the generated code
+
+""
+
+
+
+The following example shows the usage of the
+annotation defined above:
+
+
+
+@Generated("com.sun.xml.rpc.AProcessor")
+
+public interface StockQuoteService extends
+java.rmi.Remote \{
+
+ this.context = context;
+
+}
+
+
+
+===
+
+image:annotations-8.png[image]
+
+javax.annotation.Resource
+
+The _Resource_ annotation is used to declare
+a reference to a resource. It can be specified on a class, method, or
+field. When the annotation is applied on a field or method, the
+container will inject an instance of the requested resource into the
+application when the application is initialized. If the annotation is
+applied to a class, the annotation declares a resource that the
+application will look up at runtime. Even though this annotation is not
+marked _Inherited_ , all superclasses MUST be examined to discover all
+uses of this annotation. All such annotation instances specify resources
+that are needed by the application. Note that this annotation may appear
+on private fields and methods of superclasses. Injection of the declared
+resources needs to happen in these cases as well, even if a method with
+such an annotation is overridden by a subclass.
+
+The _name_ element is the JNDI name of the
+resource. When the _Resource_ annotation is applied on a field, the
+default value of the _name_ element is the field name qualified by the
+class name. When applied on a method, the default is the JavaBeans
+property name corresponding to the method qualified by the class name.
+When applied on a class, there is no default and the name MUST be
+specified.
+
+The _type_ element defines the Java type of
+the resource. When the _Resource_ annotation is applied on a field, the
+default value of the _type_ element is the type of the field. When
+applied on a method, the default is the type of the JavaBeans property.
+When applied on a class, there is no default and the type MUST be
+specified. When used, the type MUST be assignment compatible.
+
+The _authenticationType_ element is used to
+indicate the authentication type to use for the resource. It can take
+one of two values defined as an _Enum_ : _CONTAINER_ or _APPLICATION_ .
+This element may be specified for resources representing a connection
+factory of any supported type and MUST NOT be specified for resources of
+other types.
+
+The _shareable_ element is used to indicate
+whether a resource can be shared between this component and other
+components. This element may be specified for resources representing a
+connection factory of any supported type or ORB object instances and
+MUST NOT be specified for resources of other types.
+
+The _mappedName_ element is a
+product-specific name that this resource should be mapped to. The
+_mappedName_ element provides for mapping the resource reference
+specified by the _Resource_ annotation to the name of a resource known
+to the application server. The mapped name could be of any form.
+Application servers are not required to support any particular form or
+type of mapped name, nor the ability to use mapped names. The mapped
+name is product dependent and often installation dependent. No use of
+mapped name is portable.
+
+The _description_ element is the description
+of the resource. The description is expected to be in the default
+language of the system on which the application is deployed. The
+description can be presented to help in choosing the correct resource.
+
+The _lookup_ element specifies the JNDI name
+of a resource that the resource being defined will be bound to. The type
+of the referenced resource must be compatible with that of the resource
+being defined.
+
+
+
+package javax.annotation;
+
+import static
+java.lang.annotation.ElementType.*;
+
+import static
+java.lang.annotation.RetentionPolicy.*;
+
+@Target(\{TYPE, METHOD, FIELD})
+
+@Retention(RUNTIME)
+
+@Repeatable(Resources.class)
+
+public @interface Resource \{
+
+ public enum AuthenticationType \{
+
+ CONTAINER,
+
+ APPLICATION
+
+ }
+
+ String name() default "";
+
+ Class<?> type() default Object.class;
+
+ AuthenticationType authenticationType()
+default AuthenticationType.CONTAINER;
+
+ boolean shareable() default true;
+
+ String mappedName() default "";
+
+ String description() default "";
+
+ String lookup() default "";
+
+}
+
+
+
+===
+
+Element
+
+Description
+
+Default
+
+ _name_
+
+The JNDI name of the resource
+
+ _""_
+
+ _type_
+
+The Java type of the resource
+
+ _Object.class_
+
+ _authenticationType_
+
+The authentication type to use for the
+resource
+
+ _CONTAINER_
+
+ _shareable_
+
+Indicates whether the resource can be shared.
+
+ _true_
+
+ _mappedName_
+
+A product-specific name that the resource
+should map to.
+
+ _""_
+
+ _description_
+
+Description of the resource.
+
+ _""_
+
+ _lookup_
+
+the JNDI name of a resource that the resource
+being defined will be bound to
+
+ _""_
+
+=== Field based injection:
+
+To access a resource a developer declares a
+field and annotates it as being a resource reference. If the name and
+type elements are missing from the annotation they will be inferred by
+looking at the field declaration itself. It is an error if the type
+specified by the _Resource_ annotation and the type of the field are
+incompatible.
+
+For example:
+
+
+
+@Resource
+
+private DataSource myDB;
+
+In the example above the effective name is
+_com.example.class/myDB_ and the effective type is
+_javax.sql.DataSource.class_ .
+
+
+
+@Resource(name="customerDB")
+
+private DataSource myDB;
+
+In the example above the name is _customerDB_
+and the effective type is _javax.sql.DataSource.class_ .
+
+=== Setter based injection:
+
+To access a resource a developer declares a
+setter method and annotates it as being a resource reference. The name
+and type of resource may be inferred by inspecting the method
+declaration if necessary. The name of the resource, if not declared, is
+the name of the JavaBeans property as determined from the name of the
+setter method. The setter method MUST follow the standard JavaBeans
+convention—the name starts with “ _set_ ”; the return type is _void_ ;
+and there is only one parameter. Additionally, the type of the parameter
+MUST be compatible with the _type_ element of the _Resource_ annotation,
+if specified.
+
+For example:
+
+
+
+@Resource
+
+private void setMyDB(DataSource ds) \{
+
+ myDB = ds;
+
+}
+
+private DataSource myDB;
+
+In the example above the effective name is
+_com.example.class/myDB_ and the type is _javax.sql.DataSource.class_ .
+
+
+
+@Resource(name="customerDB")
+
+private void setMyDB(DataSource ds) \{
+
+ myDB = ds;
+
+}
+
+private DataSource myDB;
+
+
+
+In the example above the name is _customerDB_
+and the type is _javax.sql.DataSource.class_ .
+
+The table below shows the mapping from Java
+type to the equivalent resource type in the Java EE 5 (and later)
+deployment descriptors:
+
+
+
+===
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Java Type
+|Equivalent Resource type
+|java.lang.String
+|env-entry
+
+|java.lang.Character
+|env-entry
+
+|java.lang.Integer
+|env-entry
+
+|java.lang.Boolean
+|env-entry
+
+|java.lang.Double
+|env-entry
+
+|java.lang.Byte
+|env-entry
+
+|java.lang.Short
+|env-entry
+
+|java.lang.Long
+|env-entry
+
+|java.lang.Float
+|env-entry
+
+|javax.xml.rpc.Service
+|service-ref
+
+|javax.xml.ws.Service
+|service-ref
+
+|javax.jws.WebService
+|service-ref
+
+|javax.sql.DataSource
+|resource-ref
+
+|javax.jms.ConnectionFactory
+|resource-ref
+
+|javax.jms.QueueConnectionFactory
+|resource-ref
+
+|javax.jms.TopicConnectionFactory
+|resource-ref
+
+|javax.mail.Session
+|resource-ref
+
+|java.net.URL
+|resource-ref
+
+|javax.resource.cci.ConnectionFactory
+|resource-ref
+
+|org.omg.CORBA_2_3.ORB
+|resource-ref
+
+|any other connection factory defined by a
+resource adapter |resource-ref
+
+|javax.jms.Queue
+|message-destination-ref
+
+|javax.jms.Topic
+|message-destination-ref
+
+|javax.resource.cci.InteractionSpec
+|resource-env-ref
+
+|javax.transaction.UserTransaction
+|resource-env-ref
+
+|Everything else
+|resource-env-ref
+|===
+
+
+
+===
+
+image:annotations-8.png[image]
+
+javax.annotation.Resources
+
+The _Resource_ annotation is used to declare
+a reference to a resource. The _Resources_ annotation acts as a
+container for multiple resource declarations.
+
+
+
+package javax.annotation;
+
+import static
+java.lang.annotation.ElementType.*;
+
+import static
+java.lang.annotation.RetentionPolicy.*;
+
+@Target(\{TYPE})
+
+@Retention(RUNTIME)
+
+public @interface Resources \{
+
+ Resource[] value;
+
+}
+
+===
+
+Element
+
+Description
+
+Default
+
+ _value_
+
+Container for defining multiple resources.
+
+
+
+
+
+The following example shows the usage of the
+annotation defined above:
+
+@Resources (\{
+
+ @Resource(name="myDB"
+type=javax.sql.DataSource),
+
+ @Resource(name="myMQ"
+type=javax.jms.ConnectionFactory)
+
+})
+
+public class CalculatorBean \{
+
+ //...
+
+}
+
+===
+
+image:annotations-8.png[image]
+
+javax.annotation.PostConstruct
+
+The _PostConstruct_ annotation is used on a
+method that needs to be executed after dependency injection is done to
+perform any initialization. This method MUST be invoked before the class
+is put into service. This annotation MUST be supported on all classes
+that support dependency injection. The method annotated with
+_PostConstruct_ MUST be invoked even if the class does not request any
+resources to be injected. Only one method in a given class can be
+annotated with this annotation. The method on which the _PostConstruct_
+annotation is applied MUST fulfill all of the following requirements,
+except in cases where these requirements have been relaxed by another
+specification. See in particular the _Interceptors_ specification.
+
+- The method MUST NOT have any para meters.
+
+- The return type of the method MUST be
+_void_ .
+
+- The method MUST NOT throw a checked
+exception.
+
+- The method on which _PostConstruct_ is
+applied MAY be _public_ , _protected_ , package private or _private_ .
+
+- The method MUST NOT be static except for
+the application client.
+
+- In general, the method MUST NOT be final.
+However, other specifications are permitted to relax this requirement on
+a per-component basis.
+
+- If the method throws an unchecked exception
+the class MUST NOT be put into service.
+
+
+
+package javax.annotation;
+
+import static
+java.lang.annotation.ElementType.*;
+
+import static
+java.lang.annotation.RetentionPolicy.*;
+
+@Target(METHOD)
+
+@Retention(RUNTIME)
+
+public @interface PostConstruct \{
+
+}
+
+
+
+The following example shows the usage of the
+annotation defined above:
+
+@Resource
+
+private void setMyDB(DataSource ds) \{
+
+ myDB = ds;
+
+}
+
+
+
+@PostConstruct
+
+private void initialize() \{
+
+ //Initialize the connection object from the
+DataSource
+
+ connection = myDB.getConnection();
+
+}
+
+
+
+private DataSource myDB;
+
+private Connection connection;
+
+
+
+===
+
+image:annotations-8.png[image]
+
+javax.annotation.PreDestroy
+
+The _PreDestroy_ annotation is used on a
+method as a callback notification to signal that the instance is in the
+process of being removed by the container. The method annotated with
+_PreDestroy_ is typically used to release resources that the instance
+has been holding. This annotation MUST be supported by all container
+managed objects that support _PostConstruct_ except the application
+client. The method on which the _PreDestroy_ annotation is applied MUST
+fulfill all of the following requirements, except in cases where these
+requirements have been relaxed by another specification. See in
+particular the _Interceptors_ specification.
+
+
+
+- The method MUST NOT have any para meters.
+
+- The return type of the method MUST be
+_void_ .
+
+- The method MUST NOT throw a checked
+exception.
+
+- The method on which _PreDestroy_ is applied
+MAY be _public_ , _protected_ , package private or _private_ .
+
+- The method MUST NOT be static.
+
+- In general, the method MUST NOT be final.
+However, other specifications are permitted to relax this requirement on
+a per-component basis.
+
+- If the method throws an unchecked exception
+it is ignored.
+
+
+
+package javax.annotation;
+
+import static
+java.lang.annotation.ElementType.*;
+
+import static
+java.lang.annotation.RetentionPolicy.*;
+
+@Target(METHOD)
+
+@Retention(RUNTIME)
+
+public @interface PreDestroy \{
+
+}
+
+
+
+The following example shows the usage of the
+annotation defined above:
+
+
+
+@Resource
+
+private void setMyDB(DataSource ds) \{
+
+ myDB = ds;
+
+}
+
+
+
+@PostConstruct
+
+private void initialize() \{
+
+ //Initialize the connection object from the
+DataSource
+
+ connection = myDB.getConnection();
+
+}
+
+@PreDestroy
+
+private void cleanup() \{
+
+ //Close the connection to the DataSource.
+
+ connection.close();
+
+}
+
+
+
+private DataSource myDB;
+
+private Connection connection;
+
+===
+
+image:annotations-8.png[image]
+
+javax.annotation.Priority
+
+The _Priority_ annotation can be applied to
+classes or parameters to indicate in what order they should be used. The
+effect of using the _Priority_ annotation in any particular instance is
+defined by other specifications that define the use of a specific class.
+
+For example, the _Interceptors_ specification
+defines the use of priorities on interceptors to control the order in
+which interceptors are called.
+
+Priority values should generally be
+non-negative, with negative values reserved for special meanings such as
+“undefined” or “not specified”. A specification that defines use of the
+_Priority_ annotation may define the range of allowed priorities and any
+priority values with special meaning.
+
+
+
+package javax.annotation;
+
+import java.lang.annotation.*;
+
+import static
+java.lang.annotation.ElementType.*;
+
+import static
+java.lang.annotation.RetentionPolicy.*;
+
+
+
+@Target(\{TYPE, PARAMETER})
+
+@Retention(RUNTIME)
+
+@Documented
+
+public @interface Priority \{
+
+ /**
+
+ * The priority value.
+
+ */
+
+ int value();
+
+}
+
+
+
+===
+
+image:annotations-8.png[image]
+
+javax.annotation.security.RunAs
+
+The _RunAs_ annotation defines the security
+role of the application during execution in a Java EE container. It can
+be specified on a class. This allows developers to execute an
+application under a particular role. The role MUST map to the user /
+group information in the container’s security realm. The _value_ element
+in the annotation is the name of a security role.
+
+
+
+package javax.annotation.security;
+
+import static
+java.lang.annotation.ElementType.*;
+
+import static
+java.lang.annotation.RetentionPolicy.*;
+
+@Target(TYPE)
+
+@Retention(RUNTIME)
+
+public @interface RunAs \{
+
+ String value();
+
+}
+
+
+
+===
+
+Element
+
+Description
+
+Default
+
+ _value_
+
+Security role of the application during
+execution in a Java EE container
+
+
+
+
+
+The following example shows the usage of the
+annotation defined above:
+
+@RunAs("Admin")
+
+public class Calculator \{
+
+ //....
+
+}
+
+===
+
+image:annotations-8.png[image]
+
+javax.annotation.security.RolesAllowed
+
+The _RolesAllowed_ annotation specifies the
+security roles permitted to access method(s) in an application. The
+value element of the _RolesAllowed_ annotation is a list of security
+role names.
+
+The _RolesAllowed_ annotation can be
+specified on a class or on method(s). Specifying it at a class level
+means that it applies to all the methods in the class. Specifying it on
+a method means that it is applicable to that method only. If applied at
+both the class and method level, the method value overrides the class
+value.
+
+
+
+package javax.annotation.security;
+
+import static
+java.lang.annotation.ElementType.*;
+
+import static
+java.lang.annotation.RetentionPolicy.*;
+
+@Target(\{TYPE,METHOD})
+
+@Retention(RUNTIME)
+
+public @interface RolesAllowed \{
+
+ String[] value();
+
+}
+
+
+
+===
+
+Element
+
+Description
+
+Default
+
+ _value_
+
+List of roles permitted to access methods in
+the application
+
+
+
+
+
+The following example shows the usage of the
+annotation defined above:
+
+@RolesAllowed("Users")
+
+public class Calculator \{
+
+ @RolesAllowed("Administrator")
+
+ public void setNewRate(int rate) \{
+
+ //...
+
+}
+
+===
+
+image:annotations-8.png[image]
+
+javax.annotation.security.PermitAll
+
+The _PermitAll_ annotation specifies that all
+security roles are allowed to invoke the specified method(s), that is,
+that the specified method(s) are “unchecked”. It can be specified on a
+class or on methods. Specifying it on the class means that it applies to
+all methods of the class. If specified at the method level, it only
+affects that method.
+
+
+
+package javax.annotation.security;
+
+import static
+java.lang.annotation.ElementType.*;
+
+import static
+java.lang.annotation.RetentionPolicy.*;
+
+@Target(\{TYPE,METHOD})
+
+@Retention(RUNTIME)
+
+public @interface PermitAll \{
+
+}
+
+The following example shows the usage of the
+annotation defined above:
+
+import javax.annotation.security.*;
+
+@RolesAllowed("Users")
+
+public class Calculator \{
+
+ @RolesAllowed("Administrator")
+
+ public void setNewRate(int rate) \{
+
+ //...
+
+ }
+
+ @PermitAll
+
+ public long convertCurrency(long amount) \{
+
+ //...
+
+ }
+
+}
+
+
+
+===
+
+image:annotations-8.png[image]
+
+javax.annotation.security.DenyAll
+
+The _DenyAll_ annotation specifies that no
+security roles are allowed to invoke the specified method(s), that is,
+that the method(s) are to be excluded from execution in the Java EE
+container.
+
+
+
+package javax.annotation.security;
+
+import static
+java.lang.annotation.ElementType.*;
+
+import static
+java.lang.annotation.RetentionPolicy.*;
+
+@Target(\{TYPE, METHOD})
+
+@Retention(RUNTIME)
+
+public @interface DenyAll \{
+
+}
+
+The following example shows the usage of the
+annotation defined above:
+
+import javax.annotation.security.*;
+
+@RolesAllowed("Users")
+
+public class Calculator \{
+
+ @RolesAllowed("Administrator")
+
+ public void setNewRate(int rate) \{
+
+ //...
+
+ }
+
+ @DenyAll
+
+ public long convertCurrency(long amount) \{
+
+ //...
+
+ }
+
+}
+
+===
+
+image:annotations-8.png[image]
+
+PermitAll, DenyAll and RolesAllowed interactions
+
+The _PermitAll_ , _DenyAll_ and
+_RolesAllowed_ annotations all define which security roles are allowed
+to access the methods on which they are applied. This section describes
+how these annotations interact and which usages of these annotations are
+valid.
+
+If the _PermitAll_ , _DenyAll_ and
+_RolesAllowed_ annotations are applied on methods of a class, then the
+method level annotations take precedence (at the corresponding methods)
+over any class level annotations of type _PermitAll_ , _DenyAll_ and
+_RolesAllowed_ .
+
+===
+
+image:annotations-8.png[image]
+
+javax.annotation.security.DeclareRoles
+
+The _DeclareRoles_ annotation is used to
+specify security roles used by the application. It can be specified on a
+class. It typically would be used to define roles that could be tested
+(i.e., by calling _isUserInRole_ ) from within the methods of the
+annotated class. It could also be used to declare roles that are not
+implicitly declared as the result of their use in a _RolesAllowed_
+annotation on the class or a method of the class.
+
+
+
+package javax.annotation.security;
+
+import static
+java.lang.annotation.ElementType.*;
+
+import static
+java.lang.annotation.RetentionPolicy.*;
+
+@Target(TYPE)
+
+@Retention(RUNTIME)
+
+public @interface DeclareRoles\{
+
+ String[] value();
+
+}
+
+
+
+===
+
+Element
+
+Description
+
+Default
+
+ _value_
+
+List of security roles specified by the
+application
+
+
+
+
+
+The following example shows the usage of the
+annotation defined above:
+
+@DeclareRoles("BusinessAdmin")
+
+public class Calculator \{
+
+ public void convertCurrency() \{
+
+ if(x.isUserInRole("BusinessAdmin")) \{
+
+ //....
+
+ }
+
+ }
+
+ //...
+
+}
+
+
+
+===
+
+image:annotations-8.png[image]
+
+javax.annotation.sql.DataSourceDefinition
+
+The _DataSourceDefinition_ annotation is used
+to define a container _DataSource_ to be registered with JNDI. The
+_DataSource_ may be configured by setting the annotation elements for
+commonly-used _DataSource_ properties. Additional standard and
+vendor-specific properties may be specified using the _properties_
+element. The data source will be registered under the name specified in
+the _name_ element. It may be defined to be in any valid Java EE
+namespace, which will determine the accessibility of the data source
+from other components. A JDBC driver implementation class of the
+appropriate type, either _DataSource_ , _ConnectionPoolDataSource_ , or
+_XADataSource_ , must be indicated by the _className_ element. The
+driver class is not required to be available at deployment but must be
+available at runtime prior to any attempt to access the _DataSource_ .
+
+ _DataSource_ properties should not be
+specified more than once. If the _url_ annotation element contains a
+_DataSource_ property that was also specified using the corresponding
+annotation element or was specified in the _properties_ annotation
+element, the precedence order is undefined and implementation specific.
+
+Vendors are not required to support
+_properties_ that do not normally apply to a specific data source type.
+For example, specifying the _transactional_ property to be _true_ but
+supplying a value for _className_ that implements a data source class
+other than _XADataSource_ may not be supported.
+
+Vendor-specific properties may be combined
+with or used to override standard data source properties defined using
+this annotation.
+
+ _DataSource_ properties that are specified
+and are not supported in a given configuration or cannot be mapped to a
+vendor-specific configuration property may be ignored.
+
+Although the annotation allows you to specify
+a password, it is recommended not to embed passwords in production code.
+The _password_ element in the annotation is provided as a convenience
+for ease of development.
+
+
+
+package javax.annotation.sql;
+
+import java.lang.annotation.Target;
+
+import java.lang.annotation.Retention;
+
+import java.lang.annotation.ElementType;
+
+import java.lang.annotation.RetentionPolicy;
+
+@Target(\{ElementType.TYPE})
+
+@Retention(RetentionPolicy.RUNTIME)
+
+@Repeatable(DataSourceDefinitions.class)
+
+public @interface DataSourceDefinition \{
+
+ String name();
+
+ String className();
+
+ String description() default "";
+
+ String url() default "";
+
+ String user() default "";
+
+ String password() default "";
+
+ String databaseName() default "";
+
+ int portNumber() default -1;
+
+ String serverName() default "localhost";
+
+ int isolationLevel() default -1;
+
+ boolean transactional() default true;
+
+ int initialPoolSize() default -1;
+
+ int maxPoolSize() default -1;
+
+ int minPoolSize() default -1;
+
+ int maxIdleTime() default -1;
+
+ int maxStatements() default -1;
+
+ String[] properties() default \{};
+
+ int loginTimeout() default 0;
+
+}
+
+
+
+===
+
+[width="100%",cols="34%,33%,33%",options="header",]
+|===
+|Element
+|Description
+|Default
+| _name_ |JNDI
+name by which the data source will be registered
+|
+
+| _className_
+|DataSource implementation class name
+|
+
+| _description_
+|Description of the data source
+|""
+
+| _url_ |A JDBC
+URL. If the url annotation element contains a DataSource property that
+was also specified using the corresponding annotation element, the
+precedence order is undefined and implementation specific.
+|""
+
+| _user_ |User
+name for connection authentications |""
+
+| _password_
+|Password for connection authentications
+|""
+
+| _databaseName_
+|Name of a database on a server
+|""
+
+| _portNumber_
+|Port number where a server is listening for
+requests |""
+
+| _serverName_
+|Database server name
+|"localhost"
+
+| _isolationLevel_
+|Isolation level for connections.
+|-1 (vendor specific)
+
+| _transactional_
+|Indicates whether a connection is
+transactional or not |true
+
+| _initialPoolSize_
+|Number of connections that should be created
+when a connection pool is initialized |-1
+(vendor specific)
+
+| _maxPoolSize_
+|Maximum number of connections that should be
+concurrently allocated for a connection pool
+|-1 (vendor specific)
+
+| _minPoolSize_
+|Minimum number of connections that should be
+allocated for a connection pool |-1 (vendor
+specific)
+
+| _maxIdleTime_
+|The number of seconds that a physical
+connection should remain unused in the pool before the connection is
+closed for a connection pool |-1 (vendor
+specific)
+
+| _maxStatements_
+|The total number of statements that a
+connection pool should keep open. A value of 0 indicates that the
+caching of statements is disabled for a connection pool
+|-1 (vendor specific)
+
+| _properties_
+|Used to specify vendor-specific properties
+and less commonly used _DataSource_ properties. If a _DataSource_
+property is specified in the properties element and the annotation
+element for the property is also specified, the annotation element value
+takes precedence. |\{}
+
+| _loginTimeout_
+|The maximum time in seconds that this data
+source will wait while attempting to connect to a database. A value of 0
+specifies that the timeout is the default system timeout if there is
+one, otherwise it specifies that there is no timeout
+|0
+|===
+
+
+
+Examples:
+
+
+
+@DataSourceDefinition(name="java:global/MyApp/MyDataSource",
+
+ className="com.foobar.MyDataSource",
+
+ portNumber=6689,
+
+ serverName="myserver.com",
+
+ user="lance",
+
+ password="secret")
+
+
+
+Using a URL:
+
+
+
+@DataSourceDefinition(name="java:global/MyApp/MyDataSource",
+
+
+className="org.apache.derby.jdbc.ClientDataSource",
+
+ url="jdbc:derby://localhost:1527/myDB",
+
+ user="lance",
+
+ password="secret")
+
+
+
+===
+
+image:annotations-8.png[image]
+
+javax.annotation.sql.DataSourceDefinitions
+
+The _DataSourceDefinition_ annotation is used
+to declare a container _DataSource_ . The _DataSourceDefinitions_
+annotation acts as a container for multiple data source declarations.
+
+
+
+package javax.annotation.sql;
+
+import java.lang.annotation.Target;
+
+import java.lang.annotation.Retention;
+
+import java.lang.annotation.ElementType;
+
+import java.lang.annotation.RetentionPolicy;
+
+@Target(\{ElementType.TYPE})
+
+@Retention(RetentionPolicy.RUNTIME)
+
+public @interface DataSourceDefinitions \{
+
+ DataSourceDefinition[] value ();
+
+}
+
+
+
+===
+
+Element
+
+Description
+
+Default
+
+ _value_
+
+Container for defining multiple data sources.
+
+
+
+
+
+The following example shows the usage of the
+annotation defined above:
+
+@DataSourceDefinitions (\{
+
+@DataSourceDefinition(name="java:global/MyApp/MyDataSource",
+
+ className="com.foobar.MyDataSource",
+
+ portNumber=6689,
+
+ serverName="myserver.com",
+
+ user="lance",
+
+ password="secret")
+
+@DataSourceDefinition(name="java:global/MyApp/MyDataSource",
+
+
+className="org.apache.derby.jdbc.ClientDataSource",
+
+ url="jdbc:derby://localhost:1527/myDB",
+
+ user="lance",
+
+ password="secret")
+
+})
+
+public class CalculatorBean \{
+
+ //...
+
+}
+
+===
+
+image:annotations-8.png[image]
+
+javax.annotation.ManagedBean
+
+The _ManagedBean_ annotation is used to
+declare a Managed Bean as specified in the _Managed Beans_
+specification. Managed Beans are container-managed objects that support
+a small set of basic services such as resource injection, lifecycle
+callbacks and interceptors. A Managed Bean may optionally have a name, a
+_String_ specified via the _value_ element.
+
+
+
+package javax.annotation;
+
+import static
+java.lang.annotation.ElementType.*;
+
+import static
+java.lang.annotation.RetentionPolicy.*;
+
+@Target(TYPE)
+
+@Retention(RUNTIME)
+
+public @interface ManagedBean \{
+
+ boolean value() default "";
+
+}
+
+}
+
+===
+
+Element
+
+Description
+
+Default
+
+ _value_
+
+Name of the Managed Bean
+
+""
+
+
+
+
+
+Examples:
+
+@ManagedBean("cart")
+
+public class ShoppingCart \{
+
+...
+
+
+
+}
+
+===
+
+===
+
+image:annotations-9.png[image]
+
+References
+
+image:annotations-10.png[image]
+
+JSR 175: A Metadata Facility for the Java
+Programming Language. http://jcp.org/en/jsr/detail?id=175
+
+Java Platform, Enterprise Edition, v7 (Java
+EE). http://jcp.org/en/jsr/detail?id=342
+
+Java 2 Platform, Standard Edition, v5.0
+(J2SE). http://java.sun.com/j2se
+
+Enterprise JavaBeans, v3.2 (EJB).
+http://jcp.org/en/jsr/detail?id=345
+
+Interceptors, 1.2.
+http://jcp.org/en/jsr/detail?id=318
+
+Managed Beans.
+http://jcp.org/en/jsr/detail?id=316
+
+RFC 2119.
+http://www.faqs.org/rfcs/rfc2119.html
