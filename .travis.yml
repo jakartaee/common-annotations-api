@@ -1,14 +1,16 @@
-dist: trusty
+dist: bionic
 language: java
 sudo: false
 
 jdk:
   - oraclejdk11
   - openjdk11
+  - oraclejdk14
+  - openjdk14
 
 cache:
   directories:
     - $HOME/.m2
 
 script:
-  - mvn verify -B -V
+  - mvn -f api/pom.xml verify -B -V
