@@ -228,7 +228,7 @@ the guidelines specified for annotations and inheritance:
 |===
 |Methods in derived classes |Effective TransactionAttribute value
 |foo() in ABean
-|TransactionAttribute(REQUIRED). (Default TransactionAttribute as defined by the EJB specification).
+|TransactionAttribute(REQUIRED). (Default TransactionAttribute as defined by the Jakarta Enterprise Beans specification).
 |bar() in ABean
 |TransactionAttribute(REQUIRED)
 |foo() in BBean
@@ -249,7 +249,7 @@ the guidelines specified for annotations and inheritance:
 |TransactionAttribute(REQUIRED) (from Base class)
 |===
 
-For more details about the _TransactionAttribute_ annotation, see the _EJB 3 Core Contracts_
+For more details about the _TransactionAttribute_ annotation, see the _Jakarta Enterprise Beans Core Contracts_
 specification.
 
 All annotations defined in this specification
@@ -579,7 +579,7 @@ resources to be injected. Only one method in a given class can be
 annotated with this annotation. The method on which the _PostConstruct_
 annotation is applied MUST fulfill all of the following requirements,
 except in cases where these requirements have been relaxed by another
-specification. See in particular the _Interceptors_ specification.
+specification. See in particular the _Jakarta Interceptors_ specification.
 
 - The method MUST NOT have any para meters.
 
@@ -643,7 +643,7 @@ managed objects that support _PostConstruct_ except the application
 client. The method on which the _PreDestroy_ annotation is applied MUST
 fulfill all of the following requirements, except in cases where these
 requirements have been relaxed by another specification. See in
-particular the _Interceptors_ specification.
+particular the _Jakarta Interceptors_ specification.
 
 - The method MUST NOT have any para meters.
 
@@ -708,7 +708,7 @@ classes or parameters to indicate in what order they should be used. The
 effect of using the _Priority_ annotation in any particular instance is
 defined by other specifications that define the use of a specific class.
 
-For example, the _Interceptors_ specification
+For example, the _Jakarta Interceptors_ specification
 defines the use of priorities on interceptors to control the order in
 which interceptors are called.
 
@@ -1139,10 +1139,10 @@ public class CalculatorBean {
 === jakarta.annotation.ManagedBean
 
 The _ManagedBean_ annotation is used to
-declare a Managed Bean as specified in the _Managed Beans_
-specification. Managed Beans are container-managed objects that support
+declare a Jakarta Managed Bean as specified in the _Jakarta Managed Beans_
+specification. Jakarta Managed Beans are container-managed objects that support
 a small set of basic services such as resource injection, lifecycle
-callbacks and interceptors. A Managed Bean may optionally have a name, a
+callbacks and interceptors. A Jakarta Managed Bean may optionally have a name, a
 _String_ specified via the _value_ element.
 
 [source,java]
@@ -1161,7 +1161,7 @@ public @interface ManagedBean {
 
 |===
 |Element |Description |Default
-|value |Name of the Managed Bean |""
+|value |Name of the Jakarta Managed Bean |""
 |===
 
 Examples:
@@ -1179,20 +1179,20 @@ public class ShoppingCart {
 JSR 175: A Metadata Facility for the Java
 Programming Language. http://jcp.org/en/jsr/detail?id=175
 
-Java Platform, Enterprise Edition, v7 (Java
-EE). http://jcp.org/en/jsr/detail?id=342
+Jakarta EE Platform 9 (Jakarta EE).
+https://jakarta.ee/specifications/platform/9/
 
 Java 2 Platform, Standard Edition, v5.0
-(J2SE). http://java.sun.com/j2se
+(J2SE). https://www.oracle.com/java/technologies/javase/j2se-v50.html
 
-Enterprise JavaBeans, v3.2 (EJB).
-http://jcp.org/en/jsr/detail?id=345
+Jakarta Enterprise Beans, v4.0.
+https://jakarta.ee/specifications/enterprise-beans/4.0
 
-Interceptors, 1.2.
-http://jcp.org/en/jsr/detail?id=318
+Jakarta Interceptors, 2.0.
+https://jakarta.ee/specifications/interceptors/2.0/
 
-Managed Beans.
-http://jcp.org/en/jsr/detail?id=316
+Jakarta Managed Beans.
+https://jakarta.ee/specifications/managedbeans/2.0/
 
 RFC 2119.
 http://www.faqs.org/rfcs/rfc2119.html
