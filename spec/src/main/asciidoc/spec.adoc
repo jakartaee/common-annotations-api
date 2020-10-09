@@ -494,7 +494,7 @@ In the example above the name is _customerDB_
 and the type is _javax.sql.DataSource.class_ .
 
 The table below shows the mapping from Java
-type to the equivalent resource type in the Java EE 5 (and later)
+type to the equivalent resource type in the Jakarta EE 9 (and later)
 deployment descriptors:
 
 [options="header"]
@@ -509,7 +509,6 @@ deployment descriptors:
 |java.lang.Short |env-entry
 |java.lang.Long |env-entry
 |java.lang.Float |env-entry
-|jakarta.xml.rpc.Service |service-ref
 |jakarta.xml.ws.Service |service-ref
 |jakarta.jws.WebService |service-ref
 |javax.sql.DataSource |resource-ref
@@ -519,7 +518,6 @@ deployment descriptors:
 |jakarta.mail.Session |resource-ref
 |java.net.URL |resource-ref
 |jakarta.resource.cci.ConnectionFactory |resource-ref
-|org.omg.CORBA_2_3.ORB |resource-ref
 |any other connection factory defined by a resource adapter |resource-ref
 |jakarta.jms.Queue |message-destination-ref
 |jakarta.jms.Topic |message-destination-ref
