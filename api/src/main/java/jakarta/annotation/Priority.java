@@ -27,7 +27,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  * any particular instance is defined by other specifications that 
  * define the use of a specific class.
  * <p>
- * For example, the Interceptors specification defines the use of
+ * For example, the Jakarta Interceptors specification defines the use of
  * priorities on interceptors to control the order in which
  * interceptors are called.</p>
  * <p>

@@ -126,7 +126,7 @@ import java.lang.annotation.RetentionPolicy;
  * )
  * </pre>
  * <p>
- * An example lookup of the DataSource from an EJB:
+ * An example lookup of the DataSource from an Jakarta Enterprise Beans:
  * <pre>
  * &#064;Stateless
  * public class MyStatelessEJB {
