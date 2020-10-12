@@ -337,6 +337,7 @@
                     <release>11</release>
                     <additionalOptions>--add-modules java.sql</additionalOptions>
                     <notimestamp>true</notimestamp>
+                    <nosince>true</nosince>
                     <docfilessubdirs>true</docfilessubdirs>
                     <doctitle>Jakarta Annotations ${project.version} API Specification</doctitle>
                     <header><![CDATA[<br>Jakarta Annotations API v${project.version}]]></header>

@@ -34,7 +34,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  * <ul>
  * <li>The method must not have any parameters except in the case of 
  * interceptors in which case it takes an <code>InvocationContext</code>
- * object as defined by the Interceptors specification.</li>
+ * object as defined by the Jakarta Interceptors specification.</li>
  * <li>The method defined on an interceptor class or superclass of an
  * interceptor class must have one of the following signatures:
  * <p>

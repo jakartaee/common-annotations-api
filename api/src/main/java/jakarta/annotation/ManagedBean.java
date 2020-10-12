@@ -31,14 +31,14 @@ import static java.lang.annotation.RetentionPolicy.*;
 @Retention(RUNTIME)
 public @interface ManagedBean {
     /**
-     * The name of the Managed Bean. Managed Bean names must be unique within a
-     * Jakarta EE module. For each named Managed Bean, Java EE containers must make
+     * The name of the Jakarta Managed Bean. Jakarta Managed Bean names must be unique within a
+     * Jakarta EE module. For each named Jakarta Managed Bean, Jakarta EE containers must make
      * available the following entries in JNDI, using the same naming scheme used
-     * for EJB components.
+     * for Jakarta Enterprise Beans components.
      * <p>
      * In the application namespace: <p>
      * java:app/&lt;module-name&gt;/&lt;bean-name&gt; <p>
-     * In the module namespace of the module containing the Managed Bean:
+     * In the module namespace of the module containing the Jakarta Managed Bean:
      * <p> java:module/&lt;bean-name&gt;
      *
      */
