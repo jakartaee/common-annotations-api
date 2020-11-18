@@ -21,8 +21,8 @@ import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;
 
 /**
- * The <code>Priority</code> annotation can be applied to classes 
- * or parameters to indicate in what order they should be used.  
+ * The <code>Priority</code> annotation can be applied to any program elements
+ * to indicate in what order they should be used.
  * The effect of using the <code>Priority</code> annotation in
  * any particular instance is defined by other specifications that 
  * define the use of a specific class.
@@ -39,7 +39,6 @@ import static java.lang.annotation.RetentionPolicy.*;
  *
  * @since Common Annotations 1.2
  */
-@Target({TYPE,PARAMETER})
 @Retention(RUNTIME)
 @Documented
 public @interface Priority {
