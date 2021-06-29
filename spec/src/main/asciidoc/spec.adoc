@@ -732,6 +732,83 @@ public @interface Priority {
 }
 ----
 
+=== jakarta.annotation.Nonnull
+
+The _Nonnull_ annotation is used to mark
+elements that cannot be `null`.
+
+This information can be used for validation by IDEs, static analysis tools, and runtime.
+
+The annotation may be present on any target.
+This specification defines behavior on following targets:
+
+- Method -  return type will never be `null`
+- Parameter - parameter must not be `null`
+- Field - field cannot be `null` after construction of the object is completed
+
+[source,java]
+----
+package jakarta.annotation;
+
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
+@Documented
+@Retention(RUNTIME)
+public @interface Nonnull {
+}
+----
+
+The following example shows the usage of the annotation defined above:
+
+[source,java]
+----
+public interface StockQuoteService {
+    @Nonnull
+    BigDecimal quote(@Nonnull String marker);
+}
+----
+
+=== jakarta.annotation.Nullable
+
+The _Nullable_ annotation is used to mark
+elements that may be `null`.
+
+This information can be used for validation by IDEs, static analysis tools, and runtime.
+
+The annotation may be present on any target.
+This specification defines behavior on following targets:
+
+- Method -  return type may be `null`
+- Parameter - parameter may be `null`
+- Field - field may be `null`
+
+[source,java]
+----
+package jakarta.annotation;
+
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
+@Documented
+@Retention(RUNTIME)
+public @interface Nullable {
+}
+----
+
+The following example shows the usage of the annotation defined above:
+
+[source,java]
+----
+public interface StockQuoteService {
+    BigDecimal quote(String marker, @Nullable BigDecimal defaultValue);
+}
+----
+
 === jakarta.annotation.security.RunAs
 
 The _RunAs_ annotation defines the security
