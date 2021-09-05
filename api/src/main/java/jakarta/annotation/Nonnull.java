@@ -19,6 +19,10 @@ package jakarta.annotation;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 
+import jakarta.annotation.meta.TypeQualifier;
+import jakarta.annotation.meta.TypeQualifierValidator;
+import jakarta.annotation.meta.When;
+
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
@@ -32,6 +36,17 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * @since 2.0
  */
 @Documented
+@TypeQualifier
 @Retention(RUNTIME)
 public @interface Nonnull {
+    When when() default When.ALWAYS;
+
+    class Checker implements TypeQualifierValidator<Nonnull> {
+
+        public When forConstantValue(Nonnull qualifierArgument, Object value) {
+            if (value == null)
+                return When.NEVER;
+            return When.ALWAYS;
+        }
+    }
 }

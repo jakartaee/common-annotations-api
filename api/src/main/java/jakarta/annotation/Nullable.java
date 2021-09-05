@@ -19,6 +19,9 @@ package jakarta.annotation;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 
+import jakarta.annotation.meta.TypeQualifierNickname;
+import jakarta.annotation.meta.When;
+
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
@@ -38,6 +41,8 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * @since 2.0
  */
 @Documented
+@TypeQualifierNickname
+@Nonnull(when = When.UNKNOWN)
 @Retention(RUNTIME)
 public @interface Nullable {
 }
