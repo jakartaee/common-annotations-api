@@ -13,7 +13,7 @@ endif::[]
 
 Release: {revdate}
 ....
-Copyright (c) 2020 Eclipse Foundation.
+Copyright (c) 2021 Eclipse Foundation.
 
 === Eclipse Foundation Specification License
 
