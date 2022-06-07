@@ -26,6 +26,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  * such as resource injection, lifecycle callbacks and interceptors.
  *
  * @since Common Annotations 1.1
+ * @deprecated This will be removed post EE 10 and should be replaced with CDI beans
  */
 @Target(TYPE)
 @Retention(RUNTIME)
