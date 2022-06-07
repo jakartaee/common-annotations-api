@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2022 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -29,6 +29,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  */
 @Target(TYPE)
 @Retention(RUNTIME)
+@Deprecated(/*since = "10.0", forRemoval = true*/)
 public @interface ManagedBean {
     /**
      * The name of the Jakarta Managed Bean. Jakarta Managed Bean names must be unique within a
