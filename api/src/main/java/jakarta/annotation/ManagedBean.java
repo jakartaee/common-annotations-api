@@ -26,11 +26,11 @@ import static java.lang.annotation.RetentionPolicy.*;
  * such as resource injection, lifecycle callbacks and interceptors.
  *
  * @since Common Annotations 1.1
- * @deprecated This will be removed post EE 10 and should be replaced with CDI beans
+ * @deprecated This will be removed post Jakarta EE 10 and should be replaced with CDI beans
  */
 @Target(TYPE)
 @Retention(RUNTIME)
-@Deprecated(/*since = "10.0", forRemoval = true*/)
+@Deprecated(/*since = "2.1.1", forRemoval = true*/)
 public @interface ManagedBean {
     /**
      * The name of the Jakarta Managed Bean. Jakarta Managed Bean names must be unique within a
