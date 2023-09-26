@@ -83,7 +83,7 @@
                         <artifactId>jruby</artifactId>
                         <version>${jruby.version}</version>
                     </dependency>
-					<!-- Comment this section to use the default AsciidoctorJ artifact provided by the plugin -->
+		    <!-- Comment this section to use the default AsciidoctorJ artifact provided by the plugin -->
                     <dependency>
                         <groupId>org.asciidoctor</groupId>
                         <artifactId>asciidoctorj</artifactId>
