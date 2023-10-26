@@ -1,6 +1,6 @@
 # Jakarta annotations
 
-[![Build Status](https://github.com/jakartaee/common-annotation-api/actions/workflows/maven.yml/badge.svg?branch=master)](https://github.com/jakartaee/common-annotation-api/actions/workflows/maven.yml?branch=master)
+[![Build Status](https://github.com/jakartaee/common-annotations-api/actions/workflows/maven.yml/badge.svg?branch=master)](https://github.com/jakartaee/common-annotations-api/actions/workflows/maven.yml?branch=master)
 [![Jakarta Staging (Snapshots)](https://img.shields.io/nexus/s/https/jakarta.oss.sonatype.org/jakarta.annotation/jakarta.annotation-api.svg)](https://jakarta.oss.sonatype.org/content/repositories/staging/jakarta/annotation/jakarta.annotation-api/)
 
 
