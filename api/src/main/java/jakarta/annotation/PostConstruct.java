@@ -30,7 +30,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  * not request any resources to be injected. Only one 
  * method in a given class can be annotated with this annotation. 
  * The method on which the {@code PostConstruct} annotation is
- * applied must fulfill all of the following criteria:
+ * applied must fulfill all the following criteria:
  * <ul>
  * <li>The method must not have any parameters except in the case of 
  * interceptors in which case it takes an {@code InvocationContext}
@@ -38,9 +38,9 @@ import static java.lang.annotation.RetentionPolicy.*;
  * <li>The method defined on an interceptor class or superclass of an
  * interceptor class must have one of the following signatures:
  * <p>
- * void &#060;METHOD&#062;(InvocationContext)
+ * {@code void <METHOD>(InvocationContext)}
  * <p>
- * Object &#060;METHOD&#062;(InvocationContext) throws Exception
+ * {@code Object <METHOD>(InvocationContext) throws Exception}
  * <p>
  * <i>Note: A PostConstruct interceptor method must not throw application 
  * exceptions, but it may be declared to throw checked exceptions including 
@@ -52,7 +52,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  * <li>The method defined on a non-interceptor class must have the 
  * following signature:
  * <p>
- * void &#060;METHOD&#062;()
+ * {@code void <METHOD>()}
  * </li>
  * <li>The method on which the {@code PostConstruct} annotation
  * is applied may be public, protected, package private or private.</li>
