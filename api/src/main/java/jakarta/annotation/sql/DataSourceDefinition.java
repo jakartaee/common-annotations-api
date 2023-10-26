@@ -46,16 +46,16 @@ import java.lang.annotation.RetentionPolicy;
  * the properties annotation element, the precedence order is undefined
  * and implementation specific:
  * <p>
- * <pre>
- *   &#064;DataSourceDefinition(name="java:global/MyApp/MyDataSource",
- *      className="org.apache.derby.jdbc.ClientDataSource",
- *      url="jdbc:derby://localhost:1527/myDB;user=bill",
- *      user="lance",
- *      password="secret",
- *      databaseName="testDB",
- *      serverName="luckydog"
- *   )// DO NOT DO THIS!!!
- * </pre>
+ * {@snippet :
+ * @DataSourceDefinition(name="java:global/MyApp/MyDataSource",
+ *     className="org.apache.derby.jdbc.ClientDataSource",
+ *     url="jdbc:derby://localhost:1527/myDB;user=bill",
+ *     user="lance",
+ *     password="secret",
+ *     databaseName="testDB",
+ *     serverName="luckydog"
+ * )// DO NOT DO THIS!!!
+ * }
  * <p>
  * In the above example, the {@code databaseName}, {@code user}
  * and {@code serverName} properties were specified as part of the
@@ -67,16 +67,16 @@ import java.lang.annotation.RetentionPolicy;
  * annotation element, the annotation element value takes precedence.
  * For example:
  * <p>
- * <pre>
- *   &#064;DataSourceDefinition(name="java:global/MyApp/MyDataSource",
- *      className="org.apache.derby.jdbc.ClientDataSource",
- *      user="lance",
- *      password="secret",
- *      databaseName="testDB",
- *      serverName="luckydog",
- *       properties= {"databaseName=myDB", "databaseProp=doThis"}
+ * {@snippet :
+ * @DataSourceDefinition(name="java:global/MyApp/MyDataSource",
+ *     className="org.apache.derby.jdbc.ClientDataSource",
+ *     user="lance",
+ *     password="secret",
+ *     databaseName="testDB",
+ *     serverName="luckydog",
+ *     properties= {"databaseName=myDB", "databaseProp=doThis"}
  *   )// DO NOT DO THIS!!!
- * </pre>
+ * }
  * <p>
  * This would result in the following values being used when configuring
  * the DataSource:
@@ -104,38 +104,37 @@ import java.lang.annotation.RetentionPolicy;
  * <p>
  * Examples:
  * <br>
- *  <pre>
- *   &#064;DataSourceDefinition(name="java:global/MyApp/MyDataSource",
- *      className="com.foobar.MyDataSource",
- *      portNumber=6689,
- *      serverName="myserver.com",
- *      user="lance",
- *      password="secret"
- *   )
- *
- * </pre>
+ * {@snippet :
+ * @DataSourceDefinition(name="java:global/MyApp/MyDataSource",
+ *     className="com.foobar.MyDataSource",
+ *     portNumber=6689,
+ *     serverName="myserver.com",
+ *     user="lance",
+ *     password="secret"
+ * )
+ * }
  * <p>
  * Using a {@code URL}:
  * <br>
- * <pre>
- *  &#064;DataSourceDefinition(name="java:global/MyApp/MyDataSource",
- *    className="org.apache.derby.jdbc.ClientDataSource",
- *    url="jdbc:derby://localhost:1527/myDB",
- *    user="lance",
- *    password="secret"
+ * {@snippet :
+ * @DataSourceDefinition(name="java:global/MyApp/MyDataSource",
+ *     className="org.apache.derby.jdbc.ClientDataSource",
+ *     url="jdbc:derby://localhost:1527/myDB",
+ *     user="lance",
+ *     password="secret"
  * )
- * </pre>
+ * }
  * <p>
  * An example lookup of the DataSource from an Jakarta Enterprise Beans:
- * <pre>
- * &#064;Stateless
+ * {@snippet :
+ * @Stateless
  * public class MyStatelessEJB {
- *   &#064;Resource(lookup="java:global/MyApp/myDataSource")
- *    DataSource myDB;
- *      ...
+ *     @Resource(lookup="java:global/MyApp/myDataSource")
+ *     DataSource myDB;
+ *     ...
  * }
- * </pre>
- * <p>
+ * }
+ *
  * @see javax.sql.DataSource
  * @see javax.sql.XADataSource
  * @see javax.sql.ConnectionPoolDataSource
@@ -208,7 +207,7 @@ public @interface DataSourceDefinition {
     /**
      * Isolation level for connections. The Isolation level
      * must be one of the following:
-     * <p>
+     *
      * <ul>
      * <li>Connection.TRANSACTION_NONE,
      * <li>Connection.TRANSACTION_READ_ UNCOMMITTED,
@@ -216,7 +215,7 @@ public @interface DataSourceDefinition {
      * <li>Connection.TRANSACTION_REPEATABLE_READ,
      * <li>Connection.TRANSACTION_SERIALIZABLE
      *</ul>
-     * <p>
+     *
      * Default is vendor-specific.
      * @since 1.1
      */
@@ -281,14 +280,14 @@ public @interface DataSourceDefinition {
     /**
      * Used to specify vendor-specific properties and less commonly
      * used {@code DataSource} properties such as:
-     * <p>
+     *
      * <ul>
      * <li>dataSourceName
      * <li>networkProtocol
      * <li>propertyCycle
      * <li>roleName
      * </ul>
-     * <p>
+     *
      *  Properties are specified using the format:
      *  <i>propertyName=propertyValue</i>  with one property per array element.
      * <p>

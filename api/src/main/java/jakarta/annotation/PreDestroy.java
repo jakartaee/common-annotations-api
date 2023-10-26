@@ -37,9 +37,9 @@ import static java.lang.annotation.RetentionPolicy.*;
  * <li>The method defined on an interceptor class or superclass of an
  * interceptor class must have one of the following signatures:
  * <p>
- * void &#060;METHOD&#062;(InvocationContext)
+ * {@code void <METHOD>(InvocationContext)}
  * <p>
- * Object &#060;METHOD&#062;(InvocationContext) throws Exception
+ * {@code Object <METHOD>(InvocationContext) throws Exception}
  * <p>
  * <i>Note: A PreDestroy interceptor method must not throw application
  * exceptions, but it may be declared to throw checked exceptions including
@@ -51,7 +51,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  * <li>The method defined on a non-interceptor class must have the
  * following signature:
  * <p>
- * void &#060;METHOD&#062;()
+ * {@code void <METHOD>()}
  * </li>
  * <li>The method on which PreDestroy is applied may be public, protected,
  * package private or private.</li>
