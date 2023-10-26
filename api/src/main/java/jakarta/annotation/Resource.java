@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2005, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,7 +21,7 @@ import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;
 
 /**
- * The <code>Resource</code> annotation marks a resource that is needed
+ * The {@code Resource} annotation marks a resource that is needed
  * by the application.  This annotation may be applied to an
  * application component class, or to fields or methods of the
  * component class.  When the annotation is applied to a
@@ -31,7 +31,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  * applied to the component class, the annotation declares a
  * resource that the application will look up at runtime. 
  * <p>
- * Even though this annotation is not marked <code>Inherited</code>, deployment
+ * Even though this annotation is not marked {@code Inherited}, deployment
  * tools are required to examine all superclasses of any component
  * class to discover all uses of this annotation in all superclasses.
  * All such annotation instances specify resources that are needed
@@ -99,7 +99,7 @@ public @interface Resource {
 
     /**
      * A product-specific name that this resource should be mapped to.
-     * The <code>mappedName</code> element provides for mapping the
+     * The {@code mappedName} element provides for mapping the
      * resource reference to the name of a resource known to the
      * applicaiton server.  The mapped name could be of any form.
      * <p>Application servers are not required to support any particular

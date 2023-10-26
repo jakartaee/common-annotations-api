@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2005, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,7 +21,7 @@ import static java.lang.annotation.RetentionPolicy.*;
 
 /**
  * Specifies the list of security roles permitted to access method(s) in an 
- * application.  The value of the <code>RolesAllowed</code> annotation 
+ * application.  The value of the {@code RolesAllowed} annotation
  * is a list of security role names. 
  * This annotation can be specified on a class or on method(s). Specifying it 
  * at a class level means that it applies to all the methods in the class. 

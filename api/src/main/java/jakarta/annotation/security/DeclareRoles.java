@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2005, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,7 +21,7 @@ import static java.lang.annotation.RetentionPolicy.*;
 
 /**
  * Used by application to declare security roles. It can be 
- * specified on a class. The value of the <code>DeclareRoles</code>
+ * specified on a class. The value of the {@code DeclareRoles}
  * annotation is a list of security role names.
  *
  * @since Common Annotations 1.0

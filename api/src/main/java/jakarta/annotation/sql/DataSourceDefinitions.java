@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,7 +22,7 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * Declares one or more <code>DataSourceDefinition</code> annotations.
+ * Declares one or more {@code DataSourceDefinition} annotations.
  * 
  * @see jakarta.annotation.sql.DataSourceDefinition
  * @since Common Annotations 1.1

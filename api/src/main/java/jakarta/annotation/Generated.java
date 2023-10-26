@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2005, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,22 +20,22 @@ import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;
 
 /**
- * The <code>Generated</code> annotation is used to mark source code 
+ * The {@code Generated} annotation is used to mark source code
  * that has been generated.
  * It can also be used to differentiate user written code from generated code
  * in a single file. 
- * <p>The <code>value</code> element must have the name of the 
+ * <p>The {@code value} element must have the name of the
  * code generator. The recommended convention is to use the fully qualified 
  * name of the code generator in the value field,
- * for example <code>com.company.package.classname</code>.</p>
- * <p>The <code>date</code> element is used to indicate the date the 
+ * for example {@code com.company.package.classname}.</p>
+ * <p>The {@code date} element is used to indicate the date the
  * source was generated. 
- * The <code>date</code> element must follow the ISO 8601 standard. 
- * For example, the <code>date</code> element could have the 
- * value <code>2001-07-04T12:08:56.235-0700</code>,
+ * The {@code date} element must follow the ISO 8601 standard.
+ * For example, the {@code date} element could have the
+ * value {@code 2001-07-04T12:08:56.235-0700},
  * which represents 2001-07-04 12:08:56 local time in the U.S. Pacific 
  * time zone.</p>
- * <p>The <code>comment</code> element is a place holder for any comments 
+ * <p>The {@code comment} element is a place holder for any comments
  * that the code generator may want to include in the generated code.</p>
  * 
  * @since 1.6, Common Annotations 1.0
@@ -49,7 +49,7 @@ public @interface Generated {
    /**
     * The value element must have the name of the code generator.
     * The recommended convention is to use the fully qualified name of the
-    * code generator. For example: <code>com.acme.generator.CodeGen</code>.
+    * code generator. For example: {@code com.acme.generator.CodeGen}.
     */
    String[] value();
 

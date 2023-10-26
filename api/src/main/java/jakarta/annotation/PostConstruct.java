@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2005, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,19 +21,19 @@ import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;
 
 /**
- * The <code>PostConstruct</code> annotation is used on a method that 
+ * The {@code PostConstruct} annotation is used on a method that
  * needs to be executed after dependency injection is done to perform 
  * any initialization. This  method must be invoked before the class 
  * is put into service. This annotation must be supported on all classes 
  * that support dependency injection. The method annotated with 
- * <code>PostConstruct</code> must be invoked even if the class does 
+ * {@code PostConstruct} must be invoked even if the class does
  * not request any resources to be injected. Only one 
  * method in a given class can be annotated with this annotation. 
- * The method on which the <code>PostConstruct</code> annotation is 
+ * The method on which the {@code PostConstruct} annotation is
  * applied must fulfill all of the following criteria:
  * <ul>
  * <li>The method must not have any parameters except in the case of 
- * interceptors in which case it takes an <code>InvocationContext</code>
+ * interceptors in which case it takes an {@code InvocationContext}
  * object as defined by the Jakarta Interceptors specification.</li>
  * <li>The method defined on an interceptor class or superclass of an
  * interceptor class must have one of the following signatures:
@@ -54,7 +54,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  * <p>
  * void &#060;METHOD&#062;()
  * </li>
- * <li>The method on which the <code>PostConstruct</code> annotation
+ * <li>The method on which the {@code PostConstruct} annotation
  * is applied may be public, protected, package private or private.</li>
  * <li>The method must not be static except for the application client.</li>
  * <li>The method should not be final.</li>

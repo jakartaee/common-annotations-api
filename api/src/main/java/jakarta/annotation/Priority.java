@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2005, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,14 +16,15 @@
 
 package jakarta.annotation;
 
-import java.lang.annotation.*;
-import static java.lang.annotation.ElementType.*;
-import static java.lang.annotation.RetentionPolicy.*;
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
- * The <code>Priority</code> annotation can be applied to any program elements
+ * The {@code Priority} annotation can be applied to any program elements
  * to indicate in what order they should be used.
- * The effect of using the <code>Priority</code> annotation in
+ * The effect of using the {@code Priority} annotation in
  * any particular instance is defined by other specifications that 
  * define the use of a specific class.
  * <p>
@@ -33,7 +34,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  * <p>
  * Priority values should generally be non-negative, with negative values
  * reserved for special meanings such as "undefined" or "not specified".
- * A specification that defines use of the <code>Priority</code> annotation may define
+ * A specification that defines use of the {@code Priority} annotation may define
  * the range of allowed priorities and any priority values with special
  * meaning.</p>
  *

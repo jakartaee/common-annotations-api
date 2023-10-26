@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,28 +16,28 @@
 
 package jakarta.annotation.sql;
 
-import java.lang.annotation.*;
+import java.lang.annotation.Repeatable;
 import java.lang.annotation.Target;
 import java.lang.annotation.Retention;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * Annotation used to define a container <code>DataSource</code> to
- * be registered with JNDI. The <code>DataSource</code> may be configured by
- * setting the annotation elements for commonly used <code>DataSource</code>
+ * Annotation used to define a container {@code DataSource} to
+ * be registered with JNDI. The {@code DataSource} may be configured by
+ * setting the annotation elements for commonly used {@code DataSource}
  * properties.  Additional standard and vendor-specific properties may be
- * specified using the <code>properties</code> element.
+ * specified using the {@code properties} element.
  * <p>
  *
  * The data source will be registered under the name specified in the
- * <code>name</code> element. It may be defined to be in any valid
+ * {@code name} element. It may be defined to be in any valid
  * Jakarta EE namespace, which will determine the accessibility of
  * the data source from other components.
  * <p>
  * A JDBC driver implementation class of the appropriate type, either
- * <code>DataSource</code>, <code>ConnectionPoolDataSource</code>, or
- * <code>XADataSource</code>, must be indicated by the <code>className</code>
+ * {@code DataSource}, {@code ConnectionPoolDataSource}, or
+ * {@code XADataSource}, must be indicated by the {@code className}
  * element. The availability of the driver class will be assumed at runtime.
  *<p>
  * DataSource properties should not be specified more than once. If
@@ -57,12 +57,12 @@ import java.lang.annotation.RetentionPolicy;
  *   )// DO NOT DO THIS!!!
  * </pre>
  * <p>
- * In the above example, the <code>databaseName</code>, <code>user</code>
- * and <code>serverName</code> properties were specified as part of the
- * <code>url</code> property and using the corresponding
+ * In the above example, the {@code databaseName}, {@code user}
+ * and {@code serverName} properties were specified as part of the
+ * {@code url} property and using the corresponding
  * annotation elements. This should be avoided.
  * <p>
- * If the <code>properties</code> annotation element is used and contains a
+ * If the {@code properties} annotation element is used and contains a
  * DataSource property that was also specified using the corresponding
  * annotation element, the annotation element value takes precedence.
  * For example:
@@ -91,14 +91,14 @@ import java.lang.annotation.RetentionPolicy;
  * <p>
  * Vendors are not required to support properties that do not normally
  * apply to a specific data source type. For example, specifying the
- * <code>transactional</code> property to be <code>true</code> but supplying
- * a value for <code>className</code> that implements a data source class
- * other than <code>XADataSource</code> may not be supported.
+ * {@code transactional} property to be {@code true} but supplying
+ * a value for {@code className} that implements a data source class
+ * other than {@code XADataSource} may not be supported.
  * <p>
  * Vendor-specific properties may be combined with or used to
  *  override standard data source properties defined using this annotation.
  * <p>
- * <code>DataSource</code> properties that are specified and are not supported
+ * {@code DataSource} properties that are specified and are not supported
  * in a given configuration or cannot be mapped to a vendor specific
  * configuration property may be ignored.
  * <p>
@@ -115,7 +115,7 @@ import java.lang.annotation.RetentionPolicy;
  *
  * </pre>
  * <p>
- * Using a <code>URL</code>:
+ * Using a {@code URL}:
  * <br>
  * <pre>
  *  &#064;DataSourceDefinition(name="java:global/MyApp/MyDataSource",
@@ -154,8 +154,8 @@ public @interface DataSourceDefinition {
 
     /**
      * Name of a DataSource class that implements
-     *  <code>javax.sql.DataSource</code> or <code>javax.sql.XADataSource</code>
-     * or <code>javax.sql.ConnectionPoolDataSource</code>.
+     *  {@code javax.sql.DataSource} or {@code javax.sql.XADataSource}
+     * or {@code javax.sql.ConnectionPoolDataSource}.
      * @since 1.1
      */
     String className();
@@ -167,7 +167,7 @@ public @interface DataSourceDefinition {
     String description() default "";
 
     /**
-     * A JDBC URL.  If the <code>url</code>  annotation element contains a
+     * A JDBC URL.  If the {@code url}  annotation element contains a
      * DataSource property that was also specified using the corresponding
      * annotation element, the precedence order is undefined and
      * implementation specific.
@@ -223,7 +223,7 @@ public @interface DataSourceDefinition {
     int isolationLevel() default -1;
 
     /**
-     * Set to <code>false</code> if connections should not participate
+     * Set to {@code false} if connections should not participate
      * in transactions.
      * <p>
      * Default is to enlist in a transaction when one is active or becomes
@@ -280,7 +280,7 @@ public @interface DataSourceDefinition {
     int maxStatements() default -1;
     /**
      * Used to specify vendor-specific properties and less commonly
-     * used <code>DataSource</code> properties such as:
+     * used {@code DataSource} properties such as:
      * <p>
      * <ul>
      * <li>dataSourceName
@@ -292,7 +292,7 @@ public @interface DataSourceDefinition {
      *  Properties are specified using the format:
      *  <i>propertyName=propertyValue</i>  with one property per array element.
      * <p>
-     * If a DataSource property is specified in the <code>properties</code>
+     * If a DataSource property is specified in the {@code properties}
      * element and the annotation element for the  property is also
      * specified, the annotation element value takes precedence.
      * @since 1.1
