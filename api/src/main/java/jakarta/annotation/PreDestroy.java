@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2005, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,18 +21,18 @@ import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;
 
 /**
- * The <code>PreDestroy</code> annotation is used on a method as a
+ * The {@code PreDestroy} annotation is used on a method as a
  * callback notification to signal that the instance is in the
  * process of being removed by the container. The method annotated
- * with <code>PreDestroy</code> is typically used to
+ * with {@code PreDestroy} is typically used to
  * release resources that it has been holding. This annotation must be
  * supported by all container-managed objects that support the use of
- * the <code>PostConstruct</code> annotation except the Jakarta EE application 
- * client. The method on which the <code>PreDestroy</code> annotation
+ * the {@code PostConstruct} annotation except the Jakarta EE application
+ * client. The method on which the {@code PreDestroy} annotation
  * is applied must fulfill all of the following criteria:
  * <ul>
  * <li>The method must not have any parameters except in the case of
- * interceptors in which case it takes an <code>InvocationContext</code>
+ * interceptors in which case it takes an {@code InvocationContext}
  * object as defined by the Jakarta Interceptors specification.</li>
  * <li>The method defined on an interceptor class or superclass of an
  * interceptor class must have one of the following signatures:
