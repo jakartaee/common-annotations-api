@@ -10,3 +10,8 @@ across a variety of Java technologies.
 
 Jakarta Annotations uses a [Java Platform Module System](http://openjdk.java.net/projects/jigsaw/spec/)
 module name `jakarta.annotation`.
+
+## Contributing
+
+We use [contribution policy](CONTRIBUTING.md), which means we can only accept contributions under
+the terms of [Eclipse Contributor Agreement](http://www.eclipse.org/legal/ECA.php).
