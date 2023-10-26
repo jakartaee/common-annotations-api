@@ -1209,3 +1209,23 @@ public class CalculatorBean {
     // ...
 }
 ----
+
+== References
+
+Java SE,
+https://www.oracle.com/java/
+
+JSR 175: A Metadata Facility for the Java
+Programming Language. http://jcp.org/en/jsr/detail?id=175
+
+Jakarta EE Platform (Jakarta EE),
+https://jakarta.ee/specifications/platform/
+
+Jakarta Enterprise Beans,
+https://jakarta.ee/specifications/enterprise-beans/
+
+Jakarta Interceptors,
+https://jakarta.ee/specifications/interceptors/
+
+RFC 2119.
+http://www.faqs.org/rfcs/rfc2119.html
