@@ -1,0 +1,24 @@
+//TODO: Update this file for any incomplete/incorrect information
+
+The pom.xml in this folder can be used to run the Jakarta Annotations Standalone TCK 
+against Glassfish 8.0.0
+
+
+Below are the instructions to run the Jakarta Annotations TCK 
+
+1. Install Java17+ , set JAVA_HOME
+2. Install Maven 3.6+ set M2_HOME
+3. SET PATH : add M2_HOME/bin, JAVA_HOME/bin
+eg: export PATH=$ANT_HOME/bin:$M2_HOME/bin:$JAVA_HOME/bin:
+
+4. Install the tck jar jakarta-annotations-tck-<version>.jar available inside \
+jakarta-annotations-tck-<version>.zip built from jakartaee/common-annotations-api project
+in this repository using below mvn install command:
+`mvn install:install-file -DcreateChecksum=true -Dpackaging=jar 
+-Dfile=jakarta-annotations-tck-<version>.jar -DgroupId=jakarta.3tck 
+-DartifactId=jakarta-annotations-tck -Dversion=<version>`
+
+
+5. Use the sample tck-runner/pom.xml available in jakartaee/common-annotations-api project, 
+to run the test with Glassfish, verify the system properties set.
+Run `mvn clean verify` from the current directory.
