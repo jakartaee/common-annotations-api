@@ -35,13 +35,13 @@ filtered out to have passing results. If the root test suite folder
 contains tests with errors or failing results, you must troubleshoot and
 correct the cause to satisfactorily complete the test run.
 
-* Errors: Tests with errors could not be executed by the Junit
+* Errors: Tests with errors could not be executed by the JUnit
 framework. These errors usually occur because the test environment is not
 properly configured.
 * Failures: Tests that fail were executed but had failing results.
 
 
-For every test run, the Junit framework creates a set of report files
+For every test run, the JUnit framework creates a set of report files
 in the target directory.
 
 
@@ -57,7 +57,7 @@ configuration issue is the cause of the failures.
 ~~~~~~~~~~~~~~~~~~~~
 
 If you need more information to identify the cause of the error or
-failure, use the Junit reports generated after running the tests.
+failure, use the JUnit reports generated after running the tests.
 
 
 [[GBFYF]][[configuration-failures]]

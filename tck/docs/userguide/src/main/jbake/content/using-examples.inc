@@ -3,7 +3,7 @@ NOTE TO WRITERS:
 These CLI examples can be customized as necessary.
 ///////////////////////////////////////////////////////////////////////
 
-Start the Junit tests using the following command:
+Start the JUnit tests using the following command:
 
 --
 [source,oac_no_warn]

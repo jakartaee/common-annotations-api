@@ -23,7 +23,7 @@ The {TechnologyShortName} TCK is a portable, configurable automated
 test suite for verifying the compatibility of a vendor's
 implementation of the {TechnologyShortName} {TechnologyVersion}
 Specification (hereafter referred to as the vendor implementation or VI).
-The {TechnologyShortName} TCK uses the Junit framework to run the test suite.
+The {TechnologyShortName} TCK uses the JUnit framework to run the test suite.
 
 
 [NOTE]

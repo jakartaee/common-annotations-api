@@ -15,7 +15,7 @@ Executing Tests
 5 Executing Tests
 -----------------
 
-The {TechnologyShortName} TCK uses the Junit framework
+The {TechnologyShortName} TCK uses the JUnit framework
 to execute the tests.
 
 This chapter includes the following topics:
@@ -155,4 +155,4 @@ of the Tests."]
 
 A set of report files is created for every test run. These report files
 can be found in the target directory that the test is run. After a test run is
-completed, the Junit framework writes  reports for the test run.
+completed, the JUnit framework writes  reports for the test run.

@@ -209,7 +209,7 @@ Each version of a TCK includes an Exclude List contained in a `TCK-Exclude-List.
 file. 
 This is a list of test file URLs that identify tests which do not
 have to be run for the specific version of the TCK being used. 
-Whenever tests are run, the Junit framework automatically excludes
+Whenever tests are run, the JUnit framework automatically excludes
 these tests from being executed as those are disabled using '@Disabled' tag in JUnit.
 
 A vendor's compatible implementation is not required to pass or run any test on the Exclude List.
