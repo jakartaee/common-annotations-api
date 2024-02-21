@@ -21,7 +21,7 @@ following commands:
 
 [source,subs="attributes"]
 ----
-mvn verify -Dit.test=com.sun.ts.tests.annotations.**
+mvn verify -Dit.test=ee.jakarta.tck.annotations.signaturetest.**
 ----
 
 [[GCMBV]]

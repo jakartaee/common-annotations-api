@@ -14,7 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-package com.sun.ts.tests.annotations;
+package ee.jakarta.tck.annotations.signaturetest;
 
 import java.util.ArrayList;
 import java.util.Properties;
