@@ -35,10 +35,10 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <site.output.dir>${project.build.directory}/staging</site.output.dir>
     <maven.site.skip>true</maven.site.skip>
-    <asciidoctorj.version>2.4.2</asciidoctorj.version>
-    <asciidoctorj.diagram.version>2.1.0</asciidoctorj.diagram.version>
+    <asciidoctorj.version>2.5.3</asciidoctorj.version>
+    <asciidoctorj.diagram.version>2.2.1</asciidoctorj.diagram.version>
     <asciidoctorj.maven.plugin.version>2.2.4</asciidoctorj.maven.plugin.version>
-    <asciidoctorj.pdf.version>1.5.3</asciidoctorj.pdf.version>
+    <asciidoctorj.pdf.version>1.6.2</asciidoctorj.pdf.version>
     <jbake.maven.plugin.version>2.7.0-rc.7</jbake.maven.plugin.version>
     <freemarker.version>2.3.30</freemarker.version>
     <!-- status: DRAFT, BETA, etc., or blank for final -->
