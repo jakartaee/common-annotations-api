@@ -56,9 +56,6 @@ slashes as a path separator instead.
 #jakarta.annotation.Generated
 ca.sig.generated=true
 
-#jakarta.annotation.ManagedBean
-ca.sig.managedbean=true
-
 #jakarta.annotation.PostConstruct
 ca.sig.postconstruct=true
 
