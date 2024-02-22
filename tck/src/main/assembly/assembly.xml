@@ -50,10 +50,14 @@
             <outputDirectory>docs</outputDirectory>
             <fileMode>755</fileMode>
             <includes>
-                <include>assertions</include>
                 <include>*.html</include>
                 <include>*.txt</include>
             </includes>
+        </fileSet>
+        <fileSet>
+            <directory>${project.basedir}/docs/tck-runner</directory>
+            <outputDirectory>tck-runner</outputDirectory>
+            <fileMode>755</fileMode>
         </fileSet>
         <fileSet>
             <directory>${project.basedir}/docs/userguide/target/generated-docs</directory>

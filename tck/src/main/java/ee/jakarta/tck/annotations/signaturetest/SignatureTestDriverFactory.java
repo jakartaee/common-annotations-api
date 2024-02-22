@@ -18,7 +18,7 @@
  * $Id$
  */
 
-package com.sun.ts.tests.annotations;
+package ee.jakarta.tck.annotations.signaturetest;
 
 /**
  * <p>

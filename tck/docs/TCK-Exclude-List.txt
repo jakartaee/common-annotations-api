@@ -16,4 +16,4 @@
 
 # This file lists the excluded tests from Jakarta Annotations TCK. 
 # This is intended only for documentation purpose and is not used to exclude any tests.
-#
+# No tests are excluded in this version

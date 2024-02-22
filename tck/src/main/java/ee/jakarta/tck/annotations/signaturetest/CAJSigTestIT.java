@@ -14,7 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-package com.sun.ts.tests.annotations;
+package ee.jakarta.tck.annotations.signaturetest;
 
 import java.util.ArrayList;
 import java.util.Properties;
@@ -180,7 +180,7 @@ public class CAJSigTestIT extends SigTest {
 
   /*
    * @class.setup_props: ts_home; sigTestClasspath, Location of ca jar files;
-   * ca.sig.generated; ca.sig.managedbean; ca.sig.postconstruct;
+   * ca.sig.generated; ca.sig.postconstruct;
    * ca.sig.priority; ca.sig.predestroy; ca.sig.resource; ca.sig.resources;
    * ca.sig.securitydeclareroles; ca.sig.securitydenyall;
    * ca.sig.securitypermitall; ca.sig.securityrolesallowed;

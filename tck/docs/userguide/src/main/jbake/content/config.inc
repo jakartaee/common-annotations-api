@@ -13,19 +13,18 @@ as toc.adoc.
 [[GBFVU]][[configuring-your-environment-to-run-the-tck-against-the-reference-implementation]]
 
 4.1 Configuring Your Environment to Run the TCK Against a Compatible Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 After configuring your environment as described in this section,
-continue with the instructions in link:#GBFUY[Section 4.4, "Using the
-JavaTest Harness Software."]
+continue with the instructions in link:using.html#GBFWO[Chapter 5, "Executing Tests."]
 
 
 [NOTE]
 =======================================================================
 
 In these instructions, variables in angle brackets need to be expanded
-for each platform. For example, `<TS_HOME>` becomes `$TS_HOME` on
-Solaris/Linux and `%TS_HOME%` on Windows. In addition, the forward
+for each platform. For example, `<JAVA_HOME>` becomes `$JAVA_HOME` on
+Solaris/Linux and `%JAVA_HOME%` on Windows. In addition, the forward
 slashes (`/`) used in all of the examples need to be replaced with
 backslashes (`\`) for Windows. Finally, be sure to use the appropriate
 separator for your operating system when specifying multiple path
@@ -39,20 +38,15 @@ slashes as a path separator instead.
 
 
 1.  Set the following environment variables in your shell environment:
-  a.  `JAVA_HOME` to the directory in which Java SE 8 is installed
-  b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK
-  {TechnologyVersion} software is installed
+  a.  `JAVA_HOME` to the directory in which Java SE {SEversion} is installed
+  b.  `M2_HOME` to the directory in which the Apache Maven build tool is installed.
   c.  `PATH` to include the following directories: `JAVA_HOME/bin`,
-  +{TechnologyHomeEnv}/bin+, and `ANT_HOME/bin`  
-2.  Copy <TS_HOME>/bin/ts.jte.jdk11 as <TS_HOME>/bin/ts.jte if JAVA_HOME is Java SE 11.
-Edit your `<TS_HOME>/bin/ts.jte` file and set the following
-environment variables:
-  a.  Set the `local.classes`
+  and `M2_HOME/bin`
+2.  Set the following System properties:
+  a.  Set the `sigTestClassPath`
   property to point to a Jakarta Annotations CI classes/jars that contain the
   annotations being supported in Step link:#BABJHHAJ[c], below.
-  b.  Set the `endorsed.dirs`
-  property to the location of the CI API jars for those technologies you
-  wish to override that exist within the JDK.
+  b. Set the `jimage.dir` property to the location where JDK modules will be extracted.
   c.  [[BABJHHAJ]] Depending on the annotations that are supported or unsupported in your
   Jakarta Annotations implementation, the following properties
   should be set to `true` or `false` respectively. +
@@ -61,9 +55,6 @@ environment variables:
 ----
 #jakarta.annotation.Generated
 ca.sig.generated=true
-
-#jakarta.annotation.ManagedBean
-ca.sig.managedbean=true
 
 #jakarta.annotation.PostConstruct
 ca.sig.postconstruct=true
@@ -100,8 +91,34 @@ ca.sig.sqldatasourcedefinition=true
 #jakarta.annotation.sql.DataSourceDefinitions
 ca.sig.sqldatasourcedefinitions=true
 ----
-  d.  Run the JavaTest harness in GUI or command-line mode, as described
-in link:#GBFUY[Section 4.4, "Using the JavaTest Harness Software."]
+3. Set the below jars to the classpath 
+  a. JAR file for the {TechnologyShortName} {TechnologyVersion} API. +
+  eg.  `${web.home}/modules/jakarta.annotations-api.jar`.
+  b. JUnit 5 jars (5.9.1+)
+  Maven cordinates :
++
+[source,oac_no_warn]
+----
+       <dependency>
+          <groupId>org.junit</groupId>
+          <artifactId>junit-bom</artifactId>
+          <version>5.9.1</version>
+          <type>pom</type>
+          <scope>import</scope>
+       </dependency>
+----
++
+ c. sigtest-maven-plugin (2.1) to run the signature tests.
+  Maven cordinates :
++
+[source,oac_no_warn]
+----
+      <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>sigtest-maven-plugin</artifactId>
+            <version>2.1</version>
+        </dependency>
+----
 
 [[GCLHU]][[configuring-your-environment-to-repackage-and-run-the-tck-against-the-vendor-implementation]]
 

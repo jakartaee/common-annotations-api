@@ -11,14 +11,13 @@ Below are the instructions to run the Jakarta Annotations TCK
 3. SET PATH : add M2_HOME/bin, JAVA_HOME/bin
 eg: export PATH=$ANT_HOME/bin:$M2_HOME/bin:$JAVA_HOME/bin:
 
-4. Install the tck jar jakarta-annotations-tck-<version>.jar available inside \
-jakarta-annotations-tck-<version>.zip built from jakartaee/common-annotations-api project
-in this repository using below mvn install command:
+4. Install the tck jar jakarta-annotations-tck-<version>.jar available at artifacts folder in \
+jakarta-annotations-tck-<version>.zip using below mvn install command:
 `mvn install:install-file -DcreateChecksum=true -Dpackaging=jar 
--Dfile=jakarta-annotations-tck-<version>.jar -DgroupId=jakarta.3tck 
+-Dfile=jakarta-annotations-tck-<version>.jar -DgroupId=jakarta.tck 
 -DartifactId=jakarta-annotations-tck -Dversion=<version>`
 
 
-5. Use the sample tck-runner/pom.xml available in jakartaee/common-annotations-api project, 
+5. Use the sample tck-runner/pom.xml available in the annotations-tck/, 
 to run the test with Glassfish, verify the system properties set.
 Run `mvn clean verify` from the current directory.
