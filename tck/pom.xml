@@ -80,7 +80,7 @@
                     <version>3.6.0</version>
                 </plugin>
                 <plugin>
-                    <groupId>jakarta.annotation</groupId>
+                    <groupId>jakarta.tck</groupId>
                     <artifactId>sigtest-maven-plugin</artifactId>
                     <version>2.2</version>
                 </plugin>
@@ -172,10 +172,10 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>jakarta.annotation</groupId>
+                        <groupId>jakarta.tck</groupId>
                         <artifactId>sigtest-maven-plugin</artifactId>
                         <configuration>
-                            <sigfile>${project.build.directory}/jakarta.annotation.sig_${project.parent.version}</sigfile>
+                            <sigfile>${project.build.directory}/jakarta.annotation.sig_${project.version}</sigfile>
                             <packages>jakarta.annotation,jakarta.annotation.security,jakarta.annotation.sql</packages>
                         </configuration>
                         <executions>
