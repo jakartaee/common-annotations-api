@@ -31,10 +31,6 @@
             <source>${project.basedir}/src/main/resources/LICENSE_${license}.md</source>
             <destName>LICENSE.md</destName>
         </file>
-        <file>
-            <source>${project.basedir}/src/main/resources/jakarta.annotation.sig_3.0</source>
-            <destName>jakarta.annotation.sig_3.0</destName>
-        </file>
     </files>
     <fileSets>
         <fileSet>
@@ -78,11 +74,8 @@
             </includes>
         </fileSet>
         <fileSet>
-            <directory>${project.basedir}/src/main/artifacts</directory>
-            <outputDirectory>artifacts</outputDirectory>
-            <includes>
-                <include>**/*.sh</include>
-            </includes>
+            <directory>${project.basedir}/src/main/dist</directory>
+            <outputDirectory>.</outputDirectory>
             <filtered>false</filtered>
         </fileSet>
     </fileSets>
