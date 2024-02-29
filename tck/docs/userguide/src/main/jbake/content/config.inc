@@ -91,10 +91,10 @@ ca.sig.sqldatasourcedefinition=true
 #jakarta.annotation.sql.DataSourceDefinitions
 ca.sig.sqldatasourcedefinitions=true
 ----
-3. Set the below jars to the classpath 
+3. Set the below jars to the classpath
   a. JAR file for the {TechnologyShortName} {TechnologyVersion} API. +
   eg.  `${web.home}/modules/jakarta.annotations-api.jar`.
-  b. JUnit 5 jars (5.9.1+)
+  b. JUnit 5 jars (5.10.2+)
   Maven cordinates :
 +
 [source,oac_no_warn]
@@ -102,13 +102,13 @@ ca.sig.sqldatasourcedefinitions=true
        <dependency>
           <groupId>org.junit</groupId>
           <artifactId>junit-bom</artifactId>
-          <version>5.9.1</version>
+          <version>5.10.2</version>
           <type>pom</type>
           <scope>import</scope>
        </dependency>
 ----
 +
- c. sigtest-maven-plugin (2.1) to run the signature tests.
+ c. sigtest-maven-plugin (2.2) to run the signature tests.
   Maven cordinates :
 +
 [source,oac_no_warn]
@@ -116,7 +116,7 @@ ca.sig.sqldatasourcedefinitions=true
       <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>sigtest-maven-plugin</artifactId>
-            <version>2.1</version>
+            <version>2.2</version>
         </dependency>
 ----
 

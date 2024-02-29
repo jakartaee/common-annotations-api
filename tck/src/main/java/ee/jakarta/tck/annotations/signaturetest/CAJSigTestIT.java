@@ -244,12 +244,12 @@ public class CAJSigTestIT extends SigTest {
   
     try {
   
-      InputStream inStreamMapfile = CAJSigTestIT.class.getClassLoader().getResourceAsStream("com/sun/ts/tests/annotations/sig-test.map");
+      InputStream inStreamMapfile = CAJSigTestIT.class.getClassLoader().getResourceAsStream("ee/jakarta/tck/annotations/signaturetest/sig-test.map");
       File mFile = writeStreamToTempFile(inStreamMapfile, "sig-test", ".map");
       mapFile = mFile.getCanonicalPath();
       logger.log(Logger.Level.INFO, "mapFile location is :"+mapFile);
   
-      InputStream inStreamPackageFile = CAJSigTestIT.class.getClassLoader().getResourceAsStream("com/sun/ts/tests/annotations/sig-test-pkg-list.txt");
+      InputStream inStreamPackageFile = CAJSigTestIT.class.getClassLoader().getResourceAsStream("ee/jakarta/tck/annotations/signaturetest/sig-test-pkg-list.txt");
       File pFile = writeStreamToTempFile(inStreamPackageFile, "sig-test-pkg-list", ".txt");
       packageFile = pFile.getCanonicalPath();
       logger.log(Logger.Level.INFO, "packageFile location is :"+packageFile);
@@ -258,7 +258,7 @@ public class CAJSigTestIT extends SigTest {
       String packageVersion = mapFileAsProps.getProperty(apiPackage);
       logger.log(Logger.Level.INFO, "Package version from mapfile :"+packageVersion);
   
-      InputStream inStreamSigFile = CAJSigTestIT.class.getClassLoader().getResourceAsStream("com/sun/ts/tests/annotations/jakarta.annotation.sig_"+packageVersion);
+      InputStream inStreamSigFile = CAJSigTestIT.class.getClassLoader().getResourceAsStream("ee/jakarta/tck/annotations/signaturetest/jakarta.annotation.sig_"+packageVersion);
       File sigFile = writeStreamToSigFile(inStreamSigFile, apiPackage, packageVersion);
       logger.log(Logger.Level.INFO, "signature File location is :"+sigFile.getCanonicalPath());
       
