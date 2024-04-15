@@ -42,7 +42,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  */
 
 @Documented
-@Retention(SOURCE)
+@Retention(CLASS)
 @Target({PACKAGE, TYPE, ANNOTATION_TYPE, METHOD, CONSTRUCTOR, FIELD, 
         LOCAL_VARIABLE, PARAMETER})
 public @interface Generated {
