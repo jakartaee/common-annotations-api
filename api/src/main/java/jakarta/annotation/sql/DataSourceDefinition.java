@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2023 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -210,7 +210,7 @@ public @interface DataSourceDefinition {
      *
      * <ul>
      * <li>Connection.TRANSACTION_NONE,
-     * <li>Connection.TRANSACTION_READ_ UNCOMMITTED,
+     * <li>Connection.TRANSACTION_READ_UNCOMMITTED,
      * <li>Connection.TRANSACTION_READ_COMMITTED,
      * <li>Connection.TRANSACTION_REPEATABLE_READ,
      * <li>Connection.TRANSACTION_SERIALIZABLE
