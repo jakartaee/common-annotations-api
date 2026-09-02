@@ -363,6 +363,18 @@ Specification projects may exercise lazy consensus, voting or any practice that 
 The expected timeframe for a response is two weeks or less.
 If consensus cannot be reached by the specification project for a prolonged period of time, the default recommendation is to exclude the tests and address the dispute in a future revision of the specification.
 
+This specification allows for lazy consensus as a resolution path for TCK test challenges as described in the Jakarta EE TCK Process Guide. 
+For this specification, test challenges will be deemed accepted 14 days from the date the test challenge issue is last commented on by a specification team committer, or 14 days from the date of filing if no comments are made by a specification team committer.
+If any specification team member determines that the challenge requires review it should be marked with the tag `challenge-review` and it will be resolved under the 'Active Resolution' process as described in the Jakarta EE TCK Process guide. 
+Generally, once a conversation occurs with a member of the committer team, the filer should consider that the challenge will follow the Active Resolution process.
+
+In the event a challenge is approved under lazy consensus, any vendor implementation Compatibility Certification Request (CCR) that uses this challenge must include the issue ID along with the TCK details and test reporting statistics for this specification, regardless if the CCR is filed to this specification project issue tracker, or it is filed for any other specification project issue tracker. 
+Failure to include this issue reference could result in CCR approval delay.
+
+Once a TCK revision that includes the resolution of this challenge is released it is no longer necessary to include any additional reference in your CCR.
+
+This specification team tries to track issues as they are filed but feel free to reach out to us via ca-dev@eclipse.org. If that fails, you may escalate your issue to the Jakarta EE Platform Committer list jakartaee-platform-dev@eclipse.org. 
+
 3.  Accepted Challenges. +
 A consensus that a test produces invalid results will result in the exclusion of that test from certification requirements, and an immediate update and release of an official distribution of the TCK including the new exclude list. The associated `challenge` issue must be closed with an `accepted` label to indicate it has been resolved.
 
